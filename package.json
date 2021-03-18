@@ -7,7 +7,7 @@
     "preview": "npx vite preview"
   },
   "devDependencies": {
-    "stylus": "^0.54.8",
+    "sass": "^1.32.8",
     "vite": "^2.1.0"
   },
   "dependencies": {

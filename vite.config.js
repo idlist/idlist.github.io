@@ -1,18 +1,17 @@
-const { resolve } = require('path')
+/* eslint-disable */
+
+import { resolve } from 'path'
 
 /**
  * @type { import('vite').UserConfig }
  */
 const config = {
-  root: './pages/',
   build: {
-    outDir: './../dist',
-    emptyOutDir: true,
     brotliSize: false,
     rollupOptions: {
       input: {
-        'main': resolve(__dirname, 'pages/index.html'),
-        '404': resolve(__dirname, 'pages/404/index.html')
+        'index': resolve(__dirname, 'index.html'),
+        '404': resolve(__dirname, '404/index.html')
       }
     }
   }
