@@ -1,14 +1,20 @@
 import m from 'mithril'
 import './index.styl'
 
-const SampleText = {
+const Title = {
   view() {
     return [
-      m('h1', 'Sample Text'),
-      m('p.sample-text', 'Sample Text'),
-      m('a', { href: './test/' }, 'Go to test')
+      m('.', 'Under construction...')
     ]
   }
 }
 
-m.mount(document.body, SampleText)
+const Layout = {
+  view() {
+    return m('.main-container', [
+      m(Title)
+    ])
+  }
+}
+
+m.mount(document.body, Layout)

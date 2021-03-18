@@ -11,8 +11,8 @@ const config = {
     brotliSize: false,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'pages/index.html'),
-        test: resolve(__dirname, 'pages/test/index.html')
+        'main': resolve(__dirname, 'pages/index.html'),
+        '404': resolve(__dirname, 'pages/404/index.html')
       }
     }
   }
