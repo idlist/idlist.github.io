@@ -1,1 +1,0 @@
-import"./dynamic-import-polyfill.b3685604.js";import{m as o}from"./vendor.01f21009.js";const n={view:()=>[o(".","Under construction...")]},i={view:()=>o(".main-container",[o(n)])};o.mount(document.body,i);
