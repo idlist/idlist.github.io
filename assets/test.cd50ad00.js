@@ -1,1 +1,0 @@
-import"./dynamic-import-polyfill.b3685604.js";import{m}from"./vendor.01f21009.js";const e={view:()=>[m("h1","Sample Text"),m("p.sample-text","Sample Text"),m("a",{href:"../"},"Back")]};m.mount(document.body,e);
