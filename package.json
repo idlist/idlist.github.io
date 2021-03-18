@@ -1,0 +1,16 @@
+{
+  "name": "id-pages",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "preview": "npx vite preview"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.8",
+    "vite": "^2.1.0"
+  },
+  "dependencies": {
+    "mithril": "^2.0.4"
+  }
+}
