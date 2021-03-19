@@ -13,7 +13,11 @@ const config = {
         'index': resolve(__dirname, 'index.html'),
         '404': resolve(__dirname, '404/index.html')
       }
-    }
+    },
+  },
+  esbuild: {
+    jsxFactory: 'm',
+    jsxFragment: 'm.Fragment'
   }
 }
 

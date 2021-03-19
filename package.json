@@ -11,6 +11,7 @@
     "vite": "^2.1.0"
   },
   "dependencies": {
+    "eslint-plugin-react": "^7.22.0",
     "mithril": "^2.0.4"
   }
 }

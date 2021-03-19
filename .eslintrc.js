@@ -6,9 +6,15 @@ module.exports = {
     'browser': true
   },
   'extends': 'eslint:recommended',
+  'plugins': [
+    'react'
+  ],
   'parserOptions': {
     'ecmaVersion': 2020,
-    'sourceType': 'module'
+    'sourceType': 'module',
+    'ecmaFeatures': {
+      'jsx': true
+    }
   },
   'globals': {
     'Atomics': 'readonly',
@@ -19,6 +25,14 @@ module.exports = {
     'no-console': 'warn',
     'semi': ['warn', 'never'],
     'quotes': ['warn', 'single'],
-    'indent': ['warn', 2, { 'SwitchCase': 1 }]
+    'indent': ['warn', 2, { 'SwitchCase': 1 }],
+    'react/jsx-uses-react': 'warn',
+    'react/jsx-uses-vars': 'warn',
+    'react/jsx-no-undef': 'warn'
+  },
+  settings: {
+    'react': {
+      'pragma': 'm'
+    }
   }
 }

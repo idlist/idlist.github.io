@@ -1,22 +1,16 @@
 @import 'components/open-sans'
+@import 'components/index/navbar'
 
 $font-stack: 'Open Sans', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 
 body
   margin: 0 auto
 
+nav
+  font-family: $font-stack
+
 .main-container
   max-width: 768px
   margin: 0 auto
+  padding: 0 1rem
   font-family: $font-stack
-
-nav
-  .header
-    display: inline-block
-  .tag-container
-    display: inline-flex
-    float: right
-    justify-content: flex-end
-  .sub-tag-container
-    display: flex
-    justify-content: flex-end
