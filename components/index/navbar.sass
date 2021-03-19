@@ -17,22 +17,6 @@ $s-screen: 640px
   bottom: 0
   position: absolute
 
-@keyframes sub-tag-down
-  0%
-    transform: translateY(-100%)
-    transform-origin: top
-  100%
-    transform: translateY(0)
-    transform-origin: top
-
-@keyframes sub-tag-up
-  0%
-    transform: translateY(0)
-    transform-origin: top
-  100%
-    transform: translateY(-100%)
-    transform-origin: top
-
 nav
   width: 100%
   position: fixed
@@ -53,20 +37,22 @@ nav
 
     &-dropdown
       height: 1rem
+      margin-left: 1rem
+      z-index: 2
+
+      transition: transform 0.5s
+
+    .rotated
+      transform: rotate(90deg)
+      transition: transform 0.5s
 
   .sub-tag-list
     background: rgba(16, 16, 16, 0.75)
+    transform: translateY(-100%)
+    transition: transform 0.5s
 
     position: relative
     z-index: -1
-
-    &-anim-down
-      animation: sub-tag-down 0.5s
-      animation-fill-mode: forwards
-
-    &-anim-up
-      animation: sub-tag-up 0.5s
-      animation-fill-mode: forwards
 
     &-container
       @extend %container
@@ -74,6 +60,12 @@ nav
 
       @media (max-width: $s-screen)
         display: block
+
+  .down
+    transform: translateY(0)
+    transition: transform 0.5s
+
+
 
 .tag-list
   height: 3rem

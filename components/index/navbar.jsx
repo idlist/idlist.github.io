@@ -1,5 +1,6 @@
 import m from 'mithril'
 import myIcon from '/icons/idlist.svg'
+import dropdown from '/icons/dropdown.png'
 
 const RouteDim = [
   { link: 'frontend-js', display: 'Frontend JS' },
@@ -11,6 +12,9 @@ const RouteDim = [
 ]
 
 class Navbar {
+  constructor() {
+    this.displaySubTag = false
+  }
   setTagClass(tag) {
     return 'tag-container'
       + (m.route.get().startsWith(tag) ? ' tag-selected' : '')
@@ -29,14 +33,25 @@ class Navbar {
               </m.route.Link>
               <m.route.Link
                 href='/dim'
-                class={ this.setTagClass('/dim') }>
+                class={ this.setTagClass('/dim') }
+                onmouseover={ () => { this.displaySubTag = true } }
+                onmouseout={ () => { this.displaySubTag = false } }>
                 <div class='tag'>Dimensions</div>
+                <img
+                  class={ 'header-dropdown '
+                    + (this.displaySubTag ? '' : 'rotated') }
+                  src={ dropdown }
+                  alt='dropdown'/>
               </m.route.Link>
             </div>
           </div>
         </div>
         <div
-          class={ 'sub-tag-list' }>
+          class={ 'sub-tag-list '
+            + (this.displaySubTag ? 'down' : '') }
+          onmouseover={ () => { this.displaySubTag = true } }
+          onmouseout={ () => { this.displaySubTag = false } }
+          onclick={ () => { this.displaySubTag = false } }>
           <div class='sub-tag-list-container'>
             { RouteDim.map((route, index) =>
               <>
