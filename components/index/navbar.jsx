@@ -47,8 +47,7 @@ class Navbar {
           </div>
         </div>
         <div
-          class={ 'sub-tag-list '
-            + (this.displaySubTag ? 'down' : '') }
+          class={ 'sub-tag-list ' + (this.displaySubTag ? 'down' : '') }
           onmouseover={ () => { this.displaySubTag = true } }
           onmouseout={ () => { this.displaySubTag = false } }
           onclick={ () => { this.displaySubTag = false } }>

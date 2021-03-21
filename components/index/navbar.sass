@@ -23,8 +23,8 @@ nav
   top: 0
 
   .header
-    background: linear-gradient(#eee, #dedede 87.5%, #ddd)
-    box-shadow: 0px 0px 10px #666
+    background: linear-gradient(#e8e8e8, #e4e4e4 87.5%, #e0e0e0)
+    box-shadow: 0px 0px 8px #999
     z-index: 2
 
     display: flex
@@ -89,7 +89,7 @@ nav
       @extend %absolute
       content: ''
 
-      background: linear-gradient(#eee, #e8e8e8 30%, #fff)
+      background: linear-gradient(#e8e8e8, #ececec 30%, #fff)
       opacity: 0
       z-index: 0
 
@@ -102,21 +102,19 @@ nav
       opacity: 1
 
     &:active::before
-      background: linear-gradient(#f0f0f0, #fff)
+      background: linear-gradient(#ececec, #fff)
       z-index: 2
-      @media (max-width: $s-screen)
-        display: flex
 
     .tag
-      color: #333
+      color: #333333
       z-index: 2
 
   .tag-selected
     background: linear-gradient(#92fe9d, #00c9ff)
 
     .tag
-      color: #fff
-      text-shadow: 0px 0px 8px #333
+      color: #ffffff
+      text-shadow: 0px 0px 4px #333
 
 .sub-tag-container
   height: 2rem
