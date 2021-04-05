@@ -1,5 +1,4 @@
-$l-screen: 768px
-$s-screen: 640px
+@import './../constants'
 
 %container
   max-width: $l-screen
@@ -23,8 +22,7 @@ nav
   top: 0
 
   .header
-    background: linear-gradient(#e8e8e8, #e4e4e4 87.5%, #e0e0e0)
-    box-shadow: 0px 0px 8px #999
+    background-color: #eee
     z-index: 2
 
     display: flex
@@ -33,11 +31,12 @@ nav
       @extend %container
 
     &-icon
-      height: 3rem
+      height: 2.5rem
+      margin-left: 0.5rem
 
     &-dropdown
-      height: 1rem
-      margin-left: 1rem
+      height: 0.75rem
+      margin-left: 0.5rem
       z-index: 2
 
       transition: transform 0.5s
@@ -47,11 +46,14 @@ nav
       transition: transform 0.5s
 
   .sub-tag-list
+    position: fixed
+    top: 2.5rem
+    width: 100%
+
     background: rgba(16, 16, 16, 0.75)
     transform: translateY(-100%)
     transition: transform 0.5s
 
-    position: relative
     z-index: -1
 
     &-container
@@ -66,9 +68,8 @@ nav
     transition: transform 0.5s
 
 
-
 .tag-list
-  height: 3rem
+  height: 2.5rem
 
   display: flex
   justify-content: flex-end
@@ -89,7 +90,7 @@ nav
       @extend %absolute
       content: ''
 
-      background: linear-gradient(#e8e8e8, #ececec 30%, #fff)
+      background: #fff
       opacity: 0
       z-index: 0
 
@@ -102,7 +103,7 @@ nav
       opacity: 1
 
     &:active::before
-      background: linear-gradient(#ececec, #fff)
+      background-color: #ddd
       z-index: 2
 
     .tag
@@ -110,14 +111,14 @@ nav
       z-index: 2
 
   .tag-selected
-    background: linear-gradient(#92fe9d, #00c9ff)
+    background: linear-gradient(#9fffa8, #2fd2ff)
 
     .tag
       color: #ffffff
-      text-shadow: 0px 0px 4px #333
+      text-shadow: 0px 0px 8px #333
 
 .sub-tag-container
-  height: 2rem
+  height: 2.5rem
   padding: 0 0.5rem
 
   display: flex

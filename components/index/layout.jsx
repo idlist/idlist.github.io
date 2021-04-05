@@ -6,7 +6,7 @@ class Layout {
     return (
       <>
         <Navbar />
-        <article class='main-container'>
+        <article class='container'>
           { vnode.children }
         </article>
       </>

@@ -1,6 +1,8 @@
 import m from 'mithril'
 import './components/fragment-polyfix'
+
 import Layout from './components/index/layout'
+import HomeContent from './components/index/home'
 import './index.sass'
 
 let SampleText = []
@@ -19,7 +21,7 @@ m.route(document.body, '/home', {
     render() {
       return (
         <Layout>
-          <TestContent />
+          <HomeContent />
         </Layout>
       )
     }
