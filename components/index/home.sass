@@ -1,23 +1,5 @@
 @import '../constants'
 
-.home-card
-  background-color: #eee
-  padding: 1rem
-  margin: 1rem 0
-
-  h1
-    font-size: 1rem
-    margin: 0
-    font-weight: normal
-    text-transform: uppercase
-    letter-spacing: 0.25rem
-
-  hr
-    border: none
-    border-top: 1px solid #333
-    margin: 0.5rem 0
-
-
 .social-media
   &-grid
     display: grid
@@ -28,11 +10,15 @@
 
   &-item
     color: #333
-    transition: color 0.25s
     text-decoration: none
 
     &:hover
+      color: #666
+
+    &:active
       color: #999
+
+    &, &:hover, &:active
       transition: color 0.25s
 
     img

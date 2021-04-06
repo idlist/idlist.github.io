@@ -1,6 +1,7 @@
 import m from 'mithril'
 
 import Footer from './footer'
+import HomeCard from './home-card'
 import './home.sass'
 
 const SocialMediaList = [
@@ -10,31 +11,10 @@ const SocialMediaList = [
   { site: 'Stage1st', account: 'i\'DLisT', path: '/icons/stage1st.png', link: 'https://bbs.saraba1st.com/' }
 ]
 
-const ThingsList = [
-  {
-    type: 'Coding',
-    sites: [
-      { site: 'Koishi', link: 'https://koishi.js.org/guide/starter.html' }
-    ]
-  }
-]
-
-class HomeCard {
-  view(vnode) {
-    return (
-      <div class='home-card'>
-        <h1>{ vnode.attrs.title }</h1>
-        <hr />
-        { vnode.children }
-      </div>
-    )
-  }
-}
-
 class SocialMedia {
   view() {
     return (
-      <HomeCard title='you can find me at...'>
+      <HomeCard cardTitle='you can find me at...'>
         <div class='social-media-grid'>
           { SocialMediaList.map(item => (
             <a class='social-media-item' href={ item.link } target='blank'>
@@ -49,10 +29,19 @@ class SocialMedia {
   }
 }
 
+const ThingsList = [
+  {
+    type: 'Coding',
+    sites: [
+      { site: 'Koishi', link: 'https://koishi.js.org/guide/starter.html' }
+    ]
+  }
+]
+
 class Things {
   view() {
     return (
-      <HomeCard title='Things i use...'>
+      <HomeCard cardTitle='Things i use...'>
         { ThingsList.map(category => (
           <>
             <h2>{ category.type }</h2>
