@@ -1,4 +1,4 @@
-@import './../constants'
+@import '../constants'
 
 %container
   max-width: $l-screen
@@ -41,9 +41,9 @@ nav
 
       transition: transform 0.5s
 
-    .rotated
-      transform: rotate(90deg)
-      transition: transform 0.5s
+      &.rotated
+        transform: rotate(90deg)
+        transition: transform 0.5s
 
   .sub-tag-list
     position: fixed
@@ -63,9 +63,9 @@ nav
       @media (max-width: $s-screen)
         display: block
 
-  .down
-    transform: translateY(0)
-    transition: transform 0.5s
+    &.down
+      transform: translateY(0)
+      transition: transform 0.5s
 
 
 .tag-list

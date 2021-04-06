@@ -1,6 +1,8 @@
 import m from 'mithril'
+
 import myIcon from '/icons/idlist.svg'
 import dropdown from '/icons/dropdown.png'
+import './navbar.sass'
 
 const RouteDim = [
   { link: 'frontend-js', display: 'Frontend JS' },

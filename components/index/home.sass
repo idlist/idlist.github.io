@@ -1,32 +1,35 @@
-@import './../constants'
+@import '../constants'
 
 .home-card
   background-color: #eee
   padding: 1rem
-  margin: 0.5rem 0
+  margin: 1rem 0
 
   h1
     font-size: 1rem
     margin: 0
     font-weight: normal
     text-transform: uppercase
-    letter-spacing: 0.375rem
+    letter-spacing: 0.25rem
 
   hr
     border: none
     border-top: 1px solid #333
     margin: 0.5rem 0
 
+
+.social-media
   &-grid
     display: grid
-    grid-template-columns: 1fr 1fr 1fr
+    grid-template-columns: 1fr 1fr
 
     @media (max-width: $s-screen)
-      grid-template-columns: 1fr 1fr
+      grid-template-columns: 1fr
 
   &-item
     color: #333
     transition: color 0.25s
+    text-decoration: none
 
     &:hover
       color: #999
@@ -39,10 +42,13 @@
       display: inline-block
       vertical-align: middle
 
-    span
-      margin: 0 0.5rem
+  &-platform
+    margin-left: 0.5rem
+    font-size: 0.875rem
+    color: #666
 
-
-
+  &-name
+    margin-left: 0.25rem
+    text-decoration: underline
 
 
