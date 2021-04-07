@@ -1,5 +1,18 @@
 @import '../constants'
 
+%home-link
+  color: #333
+  text-decoration: none
+
+  &:hover
+    color: #999
+
+  &:active
+    color: #ccc
+
+  &, &:hover, &:active
+    transition: color 0.25s
+
 .social-media
   &-grid
     display: grid
@@ -9,17 +22,7 @@
       grid-template-columns: 1fr
 
   &-item
-    color: #333
-    text-decoration: none
-
-    &:hover
-      color: #666
-
-    &:active
-      color: #999
-
-    &, &:hover, &:active
-      transition: color 0.25s
+    @extend %home-link
 
     img
       height: 2rem
@@ -37,4 +40,48 @@
     margin-left: 0.25rem
     text-decoration: underline
 
+.things-used
+  display: grid
+  grid-template-columns: 1fr 5fr
+  align-items: center
 
+  &-title
+    margin: 0.25rem 0
+    padding: 0.5rem 0
+
+    font-size: 1rem
+    font-weight: normal
+    text-align: center
+
+    color: #eee
+    background: linear-gradient(120deg, #9fffa8, #2fd2ff)
+
+    &.coding
+      color: #333
+      background: linear-gradient(120deg, #ebff3a, #63ff44)
+
+    &.graphics
+      background: linear-gradient(120deg, #f831ff, #ff1f50)
+
+  &-list
+    padding: 0.25rem 1rem
+    display: flex
+    align-items: center
+
+  &-item
+    display: flex
+    align-items: center
+
+    img
+      height: 1.5rem
+      width: 1.5rem
+
+    a, span
+      @extend %home-link
+
+      padding: 0 0.5rem
+      margin-right: 0.75rem
+      font-size: 0.875rem
+
+    a
+      text-decoration: underline
