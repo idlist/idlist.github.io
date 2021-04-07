@@ -42,35 +42,45 @@
 
 .things-used
   display: grid
-  grid-template-columns: 1fr 5fr
+  grid-template-columns: 1fr 4fr
   align-items: center
+
+  @media (max-width: $s-screen)
+    grid-template-columns: 1fr
 
   &-title
     margin: 0.25rem 0
-    padding: 0.5rem 0
+    padding: 0.5rem
 
     font-size: 1rem
     font-weight: normal
     text-align: center
 
+    @media (max-width: $s-screen)
+      padding: 0.25rem 0.5rem
+
     color: #eee
     background: linear-gradient(120deg, #9fffa8, #2fd2ff)
 
     &.coding
-      color: #333
-      background: linear-gradient(120deg, #ebff3a, #63ff44)
+      background: linear-gradient(120deg, #677000, #116400)
 
     &.graphics
-      background: linear-gradient(120deg, #f831ff, #ff1f50)
+      background: linear-gradient(120deg, #560058, #500011)
 
   &-list
     padding: 0.25rem 1rem
     display: flex
-    align-items: center
+    flex-wrap: wrap
+
+    @media (max-width: $s-screen)
+      padding: 0.25rem 0.5rem
 
   &-item
     display: flex
     align-items: center
+
+    padding: 0.25rem
 
     img
       height: 1.5rem
@@ -80,7 +90,6 @@
       @extend %home-link
 
       padding: 0 0.5rem
-      margin-right: 0.75rem
       font-size: 0.875rem
 
     a

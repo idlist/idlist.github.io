@@ -17,7 +17,7 @@ class SocialMedia {
       <HomeCard cardTitle='you can find me at...'>
         <div class='social-media-grid'>
           { SocialMediaList.map(item => (
-            <a class='social-media-item' href={ item.link } target='blank'>
+            <a class='social-media-item' href={ item.link } target='_blank'>
               <img src={ item.icon } alt={ item.site } />
               <span class='social-media-platform'>{ item.site } - </span>
               <span class='social-media-name'>{ item.account }</span>
@@ -34,7 +34,7 @@ const ThingsList = [
     type: 'Coding',
     class: 'coding',
     sites: [
-      { site: 'Mithril', icon: '/icons/mithril.png', link: 'https://mithril.js.org/' },
+      { site: 'Mithril.js', icon: '/icons/mithril.png', link: 'https://mithril.js.org/' },
       { site: 'Vite', icon: '/icons/vite.png', link: 'https://cn.vitejs.dev/' },
       { site: 'Koishi', icon: '/icons/koishi.png', link: 'https://koishi.js.org/' }
     ]
@@ -56,16 +56,18 @@ class Things {
         { ThingsList.map(category => (
           <div class='things-used'>
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
-            <div class='things-used-list'>
-              { category.sites.map(site => (
-                <div class='things-used-item'>
-                  <img src={ site.icon } alt={ site.site }/>
-                  { site.link
-                    ? <a href={ site.link } target='blank'>{ site.site }</a>
-                    : <span>{ site.site }</span>
-                  }
-                </div>
-              )) }
+            <div class='things-used-list-container'>
+              <div class='things-used-list'>
+                { category.sites.map(site => (
+                  <div class='things-used-item'>
+                    <img src={ site.icon } alt={ site.site } />
+                    { site.link
+                      ? <a href={ site.link } target='_blank'>{ site.site }</a>
+                      : <span>{ site.site }</span>
+                    }
+                  </div>
+                )) }
+              </div>
             </div>
           </div>
         )) }
