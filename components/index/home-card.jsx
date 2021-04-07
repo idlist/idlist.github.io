@@ -6,14 +6,17 @@ import './home-card.sass'
 class HomeCard {
   constructor() {
     this.open = true
-    this.dropdownStyle = 'auto'
     this.height = 0
+    this.duration = 0.25 * 1000
+
+    this.dropdownStyle = 'auto'
     this.heightStyle = 'auto'
     this.contentStyle = {
       display: 'auto',
       opacity: 1,
     }
-    this.duration = 0.25 * 1000
+
+    this.hrClass = ''
   }
   toggleCard() {
     this.open = !this.open
@@ -21,6 +24,7 @@ class HomeCard {
     if (this.open) {
       this.heightStyle = `calc(${this.height}px - 2rem)`
       this.contentStyle.display = 'auto'
+      this.hrClass = ''
 
       setTimeout(() => {
         this.contentStyle.opacity = 1
@@ -33,6 +37,7 @@ class HomeCard {
       setTimeout(() => {
         this.heightStyle = '1.5rem'
         this.contentStyle.display = 'none'
+        this.hrClass = 'closed'
         m.redraw()
       }, this.duration)
     }
@@ -72,7 +77,7 @@ class HomeCard {
             onclick={ () => { this.toggleCard(vnode) } } />
         </h1>
         <div class='home-card-divider'>
-          <hr class={ this.open ? '' : 'closed' } />
+          <hr class={ this.hrClass } />
         </div>
         <div
           class='home-card-content'

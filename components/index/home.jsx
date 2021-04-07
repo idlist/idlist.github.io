@@ -66,17 +66,15 @@ class Things {
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
             <div class='things-used-list'>
               { category.sites.map(site => (
-                <div class='things-used-item'>
+                <a class='things-used-item' href={ site.link } target={ site.link && '_blank' }>
                   <img class='things-used-icon' src={ site.icon } alt={ site.site } />
-                  { site.link
-                    ? <a href={ site.link } target='_blank'>{ site.site }</a>
-                    : <span>{ site.site }</span>
-                  }
+                  <span class={ site.link ? 'things-used-link' : 'things-used-no-link' }>
+                    { site.site }
+                  </span>
                   { site.fav
-                    ? <img class='things-used-fav' src='/pics/heart.png' />
-                    : <></>
+                    && <img class='things-used-fav' src='/pics/heart.png' />
                   }
-                </div>
+                </a>
               )) }
             </div>
           </div>
