@@ -1,7 +1,5 @@
 import m from 'mithril'
 
-import myIcon from '/icons/idlist.svg'
-import dropdown from '/buttons/dropdown.png'
 import './navbar.sass'
 
 const RouteDim = [
@@ -26,7 +24,7 @@ class Navbar {
       <nav>
         <div class='header'>
           <div class='header-container'>
-            <img class='header-icon' src={ myIcon } alt='icon' />
+            <img class='header-icon' src='/icons/idlist.svg' alt='icon' />
             <div class='tag-list'>
               <m.route.Link
                 href='/home'
@@ -42,7 +40,7 @@ class Navbar {
                 <img
                   class={ 'header-dropdown '
                     + (this.displaySubTag ? '' : 'rotated') }
-                  src={ dropdown }
+                  src='/buttons/dropdown.png'
                   alt='dropdown'/>
               </m.route.Link>
             </div>

@@ -31,12 +31,20 @@ class SocialMedia {
 
 const ThingsList = [
   {
-    type: 'Coding',
-    class: 'coding',
+    type: 'JS & Node.js',
+    class: 'js',
     sites: [
-      { site: 'Mithril.js', icon: '/icons/mithril.png', link: 'https://mithril.js.org/' },
+      { site: 'Mithril.js', icon: '/icons/mithril.png', link: 'https://mithril.js.org/', fav: true },
       { site: 'Vite', icon: '/icons/vite.png', link: 'https://cn.vitejs.dev/' },
-      { site: 'Koishi', icon: '/icons/koishi.png', link: 'https://koishi.js.org/' }
+      { site: 'Koishi.js', icon: '/icons/koishi.png', link: 'https://koishi.js.org/', fav: true }
+    ]
+  },
+  {
+    type: 'CI / CD',
+    class: 'ci',
+    sites: [
+      { site: 'LGTM', icon: '/icons/lgtm.png', link: 'https://lgtm.com/' },
+      { site: 'Travis CI', icon: '/icons/travis.png', link: 'https://travis-ci.com/' }
     ]
   },
   {
@@ -44,7 +52,7 @@ const ThingsList = [
     class: 'graphics',
     sites: [
       { site: 'Photoshop', icon: '/icons/photoshop.png' },
-      { site: 'Illustrator', icon: '/icons/illustrator.png' }
+      { site: 'Illustrator', icon: '/icons/illustrator.png', fav: true }
     ]
   }
 ]
@@ -56,18 +64,20 @@ class Things {
         { ThingsList.map(category => (
           <div class='things-used'>
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
-            <div class='things-used-list-container'>
-              <div class='things-used-list'>
-                { category.sites.map(site => (
-                  <div class='things-used-item'>
-                    <img src={ site.icon } alt={ site.site } />
-                    { site.link
-                      ? <a href={ site.link } target='_blank'>{ site.site }</a>
-                      : <span>{ site.site }</span>
-                    }
-                  </div>
-                )) }
-              </div>
+            <div class='things-used-list'>
+              { category.sites.map(site => (
+                <div class='things-used-item'>
+                  <img class='things-used-icon' src={ site.icon } alt={ site.site } />
+                  { site.link
+                    ? <a href={ site.link } target='_blank'>{ site.site }</a>
+                    : <span>{ site.site }</span>
+                  }
+                  { site.fav
+                    ? <img class='things-used-fav' src='/pics/heart.png' />
+                    : <></>
+                  }
+                </div>
+              )) }
             </div>
           </div>
         )) }
