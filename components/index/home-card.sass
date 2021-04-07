@@ -1,9 +1,12 @@
 @import '../constants'
 
 .home-card
-  background-color: #eee
   padding: 1rem
   margin: 1rem 0
+
+  background-color: #eee
+
+  transition: height 0.25s
 
   h1
     font-size: 1rem
@@ -12,7 +15,36 @@
     text-transform: uppercase
     letter-spacing: 0.25rem
 
+  &-divider
+    margin: 0.5rem 0
+
   hr
     border: none
     border-top: 1px solid #333
-    margin: 0.5rem 0
+    margin: 0 auto
+
+    width: 100%
+
+    &.closed
+      width: 0%
+
+    &, &.closed
+      transition: width 0.25s
+
+  &-dropdown
+    float: right
+
+    width: 0.875rem
+    height: 0.875rem
+    padding: 0.25rem
+
+    cursor: pointer
+
+    &.closed
+      transform: rotate(90deg)
+
+    &, &.closed
+      transition: transform 0.25s
+
+  &-content
+    transition: opacity 0.25s

@@ -1,7 +1,7 @@
 import m from 'mithril'
 
 import './footer.sass'
-import bmcLogo from '/icons/bmc.png'
+import bmcLogo from '/buttons/bmc.png'
 
 class Footer {
   view() {

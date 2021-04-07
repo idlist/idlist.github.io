@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "eslint-plugin-react": "^7.22.0",
+    "lodash": "^4.17.21",
     "mithril": "^2.0.4"
   }
 }

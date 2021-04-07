@@ -1,7 +1,7 @@
 import m from 'mithril'
 
 import myIcon from '/icons/idlist.svg'
-import dropdown from '/icons/dropdown.png'
+import dropdown from '/buttons/dropdown.png'
 import './navbar.sass'
 
 const RouteDim = [
