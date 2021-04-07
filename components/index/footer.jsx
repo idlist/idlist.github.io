@@ -1,7 +1,6 @@
 import m from 'mithril'
 
 import './footer.sass'
-import bmcLogo from '/buttons/bmc.png'
 
 class Footer {
   view() {
@@ -14,8 +13,8 @@ class Footer {
           <a
             class='bmc-button'
             href='https://www.buymeacoffee.com/idlist'
-            target='blank'>
-            <img src={ bmcLogo } alt='Buy me a coffee' />
+            target='_blank'>
+            <img src='/buttons/bmc.png' alt='Buy me a coffee' />
           </a>
         </div>
       </div>

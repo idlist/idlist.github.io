@@ -1,4 +1,5 @@
 import m from 'mithril'
+
 import Navbar from './navbar'
 
 class Layout {

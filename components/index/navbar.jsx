@@ -36,7 +36,7 @@ class Navbar {
                 class={ this.setTagClass('/dim') }
                 onmouseover={ () => { this.displaySubTag = true } }
                 onmouseout={ () => { this.displaySubTag = false } }>
-                <div class='tag'>Dimensions</div>
+                <div class='tag'>Dimension</div>
                 <img
                   class={ 'header-dropdown '
                     + (this.displaySubTag ? '' : 'rotated') }

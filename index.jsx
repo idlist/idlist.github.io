@@ -3,18 +3,8 @@ import './components/fragment-polyfix'
 
 import Layout from './components/index/layout'
 import HomeContent from './components/index/home'
+import DimensionsContent from './components/index/dimensions'
 import './index.sass'
-
-let SampleText = []
-for (let i = 0; i < 25; i++) {
-  SampleText.push(i)
-}
-
-class TestContent {
-  view() {
-    return SampleText.map(() => <p></p>)
-  }
-}
 
 m.route(document.body, '/home', {
   '/home': {
@@ -30,7 +20,7 @@ m.route(document.body, '/home', {
     render() {
       return (
         <Layout>
-          <TestContent />
+          <DimensionsContent />
         </Layout>
       )
     }
@@ -39,7 +29,7 @@ m.route(document.body, '/home', {
     render() {
       return (
         <Layout>
-          <TestContent />
+          <DimensionsContent />
         </Layout>
       )
     }
