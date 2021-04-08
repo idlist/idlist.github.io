@@ -7,7 +7,6 @@ import { resolve } from 'path'
  */
 const config = {
   build: {
-    brotliSize: false,
     rollupOptions: {
       input: {
         'index': resolve(__dirname, 'index.html'),

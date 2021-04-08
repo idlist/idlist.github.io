@@ -15,12 +15,11 @@
 
 
 .social-media
-  &-grid
-    display: grid
-    grid-template-columns: 1fr 1fr
+  display: grid
+  grid-template-columns: 1fr 1fr
 
-    @media (max-width: $s-screen)
-      grid-template-columns: 1fr
+  @media (max-width: $s-screen)
+    grid-template-columns: 1fr
 
   &-item
     @extend %home-link
@@ -73,6 +72,9 @@
     &.graphics
       background: linear-gradient(120deg, #58004c, #500011)
 
+    &.dtm
+      background: linear-gradient(120deg, #532f00, #5f6100)
+
   &-list
     padding: 0.25rem 1rem
     display: flex
@@ -104,3 +106,35 @@
   &-fav
     height: 0.75rem
     width: 0.75rem
+
+
+.home-card.links
+  display: grid
+  grid-template-columns: 1fr 5fr
+  align-items: center
+
+  @media (max-width: $s-screen)
+    grid-template-columns: 1fr
+
+    h1
+      margin-bottom: 0.25rem
+
+  .external-links
+    display: flex
+    justify-content: flex-end
+    flex-wrap: wrap
+
+    @media (max-width: $s-screen)
+      justify-content: flex-start
+
+    &-item
+      display: flex
+      align-items: center
+      margin: 0.25rem 0 0.25rem 0.5rem
+
+      @media (max-width: $s-screen)
+        margin: 0.25rem 0.5rem 0.25rem 0
+
+      img
+        width: 2.5rem
+        height: 2.5rem

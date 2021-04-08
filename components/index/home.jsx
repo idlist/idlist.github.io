@@ -14,8 +14,8 @@ const SocialMediaList = [
 class SocialMedia {
   view() {
     return (
-      <HomeCard cardTitle='you can find me at...'>
-        <div class='social-media-grid'>
+      <HomeCard cardTitle='find me at'>
+        <div class='social-media'>
           { SocialMediaList.map(item => (
             <a class='social-media-item' href={ item.link } target='_blank'>
               <img src={ item.icon } alt={ item.site } />
@@ -34,40 +34,47 @@ const ThingsList = [
     type: 'JS & Node.js',
     class: 'js',
     sites: [
-      { site: 'Mithril.js', icon: '/icons/mithril.png', link: 'https://mithril.js.org/', fav: true },
-      { site: 'Vite', icon: '/icons/vite.png', link: 'https://cn.vitejs.dev/' },
-      { site: 'Koishi.js', icon: '/icons/koishi.png', link: 'https://koishi.js.org/', fav: true }
+      { site: 'Mithril.js', icon: 'mithril', link: 'https://mithril.js.org/', fav: true },
+      { site: 'Vite', icon: 'vite', link: 'https://cn.vitejs.dev/' },
+      { site: 'Koishi.js', icon: 'koishi', link: 'https://koishi.js.org/', fav: true }
     ]
   },
   {
     type: 'CI / CD',
     class: 'ci',
     sites: [
-      { site: 'LGTM', icon: '/icons/lgtm.png', link: 'https://lgtm.com/' },
-      { site: 'Travis CI', icon: '/icons/travis.png', link: 'https://travis-ci.com/' }
+      { site: 'LGTM', icon: 'lgtm', link: 'https://lgtm.com/' },
+      { site: 'Travis CI', icon: 'travis', link: 'https://travis-ci.com/' }
     ]
   },
   {
     type: 'Graphics',
     class: 'graphics',
     sites: [
-      { site: 'Photoshop', icon: '/icons/photoshop.png' },
-      { site: 'Illustrator', icon: '/icons/illustrator.png', fav: true }
+      { site: 'Photoshop', icon: 'photoshop' },
+      { site: 'Illustrator', icon: 'illustrator', fav: true }
+    ]
+  },
+  {
+    type: 'Desktop Music',
+    class: 'dtm',
+    sites: [
+      { site: 'Ableton Live', icon: 'live', link: 'https://www.ableton.com/en/live/', fav: true }
     ]
   }
 ]
 
-class Things {
+class ThingsUsed {
   view() {
     return (
-      <HomeCard cardTitle='Things i use...'>
+      <HomeCard cardTitle='things i use'>
         { ThingsList.map(category => (
           <div class='things-used'>
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
             <div class='things-used-list'>
               { category.sites.map(site => (
                 <a class='things-used-item' href={ site.link } target={ site.link && '_blank' }>
-                  <img class='things-used-icon' src={ site.icon } alt={ site.site } />
+                  <img class='things-used-icon' src={ `/icons/${site.icon}.png` } alt={ site.site } />
                   <span class={ site.link ? 'things-used-link' : 'things-used-no-link' }>
                     { site.site }
                   </span>
@@ -84,12 +91,38 @@ class Things {
   }
 }
 
+const LinksList = [
+  { site: 'UN1C0DE', icon:'un1c0de', link: 'https://un1c0de.xyz/' },
+]
+
+class ExternalLinks {
+  view() {
+    return (
+      <div class='home-card links'>
+        <h1>links</h1>
+        <div class='external-links'>
+          { LinksList.map(item => (
+            <a
+              class='external-links-item'
+              href={ item.link }
+              target='_blank'
+              title={ item.site }>
+              <img src={ `/icons/${item.icon}.png` } alt={ item.site }/>
+            </a>
+          )) }
+        </div>
+      </div>
+    )
+  }
+}
+
 class Home {
   view() {
     return (
       <>
         <SocialMedia />
-        <Things />
+        <ThingsUsed />
+        <ExternalLinks />
         <Footer />
       </>
     )

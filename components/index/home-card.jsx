@@ -28,6 +28,7 @@ class HomeCard {
 
       setTimeout(() => {
         this.contentStyle.opacity = 1
+        this.heightStyle = 'auto'
         m.redraw()
       }, this.duration)
     } else {
