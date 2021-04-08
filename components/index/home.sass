@@ -14,6 +14,23 @@
     transition: color 0.25s
 
 
+.home-header
+  margin: 1rem 0
+
+  display: grid
+  grid-template-columns: repeat(6, 1fr)
+
+  &-img
+    width: 100%
+    grid-column: 5 / 7
+
+    @media (max-width: $l-screen)
+      grid-column: 4 / 7
+
+    @media (max-width: $s-screen)
+      grid-column: 3 / 7
+
+
 .social-media
   display: grid
   grid-template-columns: 1fr 1fr
@@ -112,6 +129,8 @@
   display: grid
   grid-template-columns: 1fr 5fr
   align-items: center
+
+  padding: 0.5rem 1rem
 
   @media (max-width: $s-screen)
     grid-template-columns: 1fr

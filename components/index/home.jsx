@@ -4,6 +4,16 @@ import Footer from './footer'
 import HomeCard from './home-card'
 import './home.sass'
 
+class Header {
+  view() {
+    return (
+      <header class='home-header'>
+        <img class='home-header-img' src='/pics/header.png' alt='Multidimensional Complecacy'/>
+      </header>
+    )
+  }
+}
+
 const SocialMediaList = [
   { site: 'Twitter', account: '@i_dlist', icon: '/icons/twitter.png', link: 'https://twitter.com/i_dlist' },
   { site: 'SoundCloud', account: 'i\'DLisT', icon: '/icons/soundcloud.png', link: 'https://soundcloud.com/idlist' },
@@ -14,7 +24,7 @@ const SocialMediaList = [
 class SocialMedia {
   view() {
     return (
-      <HomeCard cardTitle='find me at'>
+      <HomeCard cardTitle='find me at...'>
         <div class='social-media'>
           { SocialMediaList.map(item => (
             <a class='social-media-item' href={ item.link } target='_blank'>
@@ -67,7 +77,7 @@ const ThingsList = [
 class ThingsUsed {
   view() {
     return (
-      <HomeCard cardTitle='things i use'>
+      <HomeCard cardTitle='things i use...'>
         { ThingsList.map(category => (
           <div class='things-used'>
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
@@ -79,7 +89,7 @@ class ThingsUsed {
                     { site.site }
                   </span>
                   { site.fav
-                    && <img class='things-used-fav' src='/pics/heart.png' />
+                    && <img class='things-used-fav' src='/pics/heart.png' alt='fav'/>
                   }
                 </a>
               )) }
@@ -120,6 +130,7 @@ class Home {
   view() {
     return (
       <>
+        <Header />
         <SocialMedia />
         <ThingsUsed />
         <ExternalLinks />

@@ -2,7 +2,7 @@ import m from 'mithril'
 
 import './navbar.sass'
 
-const RouteDim = [
+const DimRoute = [
   { link: 'frontend-js', display: 'Frontend JS' },
   { link: 'backend-js', display: 'Backend JS' },
   { link: 'drawing', display: 'Drawing' },
@@ -11,6 +11,17 @@ const RouteDim = [
   { link: 'others', display: 'Others' }
 ]
 
+const RouteNames = {
+  '/home': 'Home',
+  '/dim': 'Dimensions',
+  '/dim/frontend-js': 'Frontend JS',
+  '/dim/backend-js': 'Backend JS',
+  '/dim/drawing': 'Drawing',
+  '/dim/graphic-design': 'Graphic Design',
+  '/dim/desktop-music': 'Desktop Music',
+  '/dim/others': 'Others'
+}
+
 class Navbar {
   constructor() {
     this.displaySubTag = false
@@ -18,6 +29,10 @@ class Navbar {
   setTagClass(tag) {
     return 'tag-container'
       + (m.route.get().startsWith(tag) ? ' tag-selected' : '')
+  }
+  onupdate() {
+    let route = m.route.get()
+    document.title = 'i\'DLisT' + ' | ' + RouteNames[route]
   }
   view() {
     return (
@@ -52,14 +67,14 @@ class Navbar {
           onmouseout={ () => { this.displaySubTag = false } }
           onclick={ () => { this.displaySubTag = false } }>
           <div class='sub-tag-list-container'>
-            { RouteDim.map((route, index) =>
+            { DimRoute.map((route, index) =>
               <>
                 <m.route.Link
                   class='sub-tag-container'
                   href={ '/dim/' + route.link }>
                   <div class='sub-tag'>{ route.display }</div>
                 </m.route.Link>
-                { index != RouteDim.length - 1 ? <div class='sub-tag-divider'></div> : '' }
+                { index != DimRoute.length - 1 ? <div class='sub-tag-divider'></div> : '' }
               </>
             ) }
           </div>
