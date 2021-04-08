@@ -6,13 +6,13 @@
     "build": "npx vite build",
     "preview": "npx vite preview"
   },
+  "dependencies": {
+    "lodash-es": "^4.17.21",
+    "mithril": "^2.0.4"
+  },
   "devDependencies": {
+    "eslint-plugin-react": "^7.23.1",
     "sass": "^1.32.8",
     "vite": "^2.1.0"
-  },
-  "dependencies": {
-    "eslint-plugin-react": "^7.22.0",
-    "lodash": "^4.17.21",
-    "mithril": "^2.0.4"
   }
 }

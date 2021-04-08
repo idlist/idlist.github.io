@@ -8,7 +8,7 @@ class Header {
   view() {
     return (
       <header class='home-header'>
-        <img class='home-header-img' src='/pics/header.png' alt='Multidimensional Complecacy'/>
+        <img class='home-header-img' src='/pics/header.png' alt='Multidimensional Complecacy' />
       </header>
     )
   }
@@ -27,7 +27,11 @@ class SocialMedia {
       <HomeCard cardTitle='find me at...'>
         <div class='social-media'>
           { SocialMediaList.map(item => (
-            <a class='social-media-item' href={ item.link } target='_blank'>
+            <a
+              class='social-media-item'
+              href={ item.link }
+              target='_blank'
+              rel="noopener noreferrer nofollow">
               <img src={ item.icon } alt={ item.site } />
               <span class='social-media-platform'>{ item.site } - </span>
               <span class='social-media-name'>{ item.account }</span>
@@ -83,13 +87,20 @@ class ThingsUsed {
             <h2 class={ 'things-used-title ' + category.class }>{ category.type }</h2>
             <div class='things-used-list'>
               { category.sites.map(site => (
-                <a class='things-used-item' href={ site.link } target={ site.link && '_blank' }>
+                <a
+                  class='things-used-item'
+                  href={ site.link }
+                  target={ site.link && '_blank' }
+                  rel="noopener noreferrer nofollow">
                   <img class='things-used-icon' src={ `/icons/${site.icon}.png` } alt={ site.site } />
                   <span class={ site.link ? 'things-used-link' : 'things-used-no-link' }>
                     { site.site }
                   </span>
-                  { site.fav
-                    && <img class='things-used-fav' src='/pics/heart.png' alt='fav'/>
+                  { site.fav &&
+                    <div class='things-used-fav-container'>
+                      <img class='things-used-fav' src='/pics/heart.png' alt='fav' />
+                      <img class='things-used-fav-anim' src='/pics/heart.png' alt='fav-anim' />
+                    </div>
                   }
                 </a>
               )) }
@@ -102,7 +113,7 @@ class ThingsUsed {
 }
 
 const LinksList = [
-  { site: 'UN1C0DE', icon:'un1c0de', link: 'https://un1c0de.xyz/' },
+  { site: 'UN1C0DE', icon: 'un1c0de', link: 'https://un1c0de.xyz/' },
 ]
 
 class ExternalLinks {
@@ -116,8 +127,9 @@ class ExternalLinks {
               class='external-links-item'
               href={ item.link }
               target='_blank'
-              title={ item.site }>
-              <img src={ `/icons/${item.icon}.png` } alt={ item.site }/>
+              title={ item.site }
+              rel="noopener noreferrer">
+              <img src={ `/icons/${item.icon}.png` } alt={ item.site } />
             </a>
           )) }
         </div>

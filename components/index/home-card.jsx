@@ -1,5 +1,5 @@
 import m from 'mithril'
-import throttle from 'lodash/throttle'
+import throttle from 'lodash-es/throttle'
 
 import './home-card.sass'
 

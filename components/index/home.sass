@@ -1,5 +1,14 @@
 @import '../constants'
 
+@keyframes heart-pounding
+  0%
+    transform: scale(1)
+    opacity: 1
+  100%
+    transform: scale(2)
+    opacity: 0
+
+
 %home-link
   color: #333
   text-decoration: none
@@ -109,6 +118,10 @@
     padding: 0.25rem
     padding-right: 0.75rem
 
+    &:hover .things-used-fav-anim
+      animation: 1s heart-pounding
+      animation-iteration-count: infinite
+
   &-link, &-no-link
     padding: 0 0.25rem
     font-size: 0.875rem
@@ -120,23 +133,33 @@
     height: 1.5rem
     width: 1.5rem
 
-  &-fav
+  &-fav-container
+    position: relative
+
+    display: flex
+    align-items: center
+
+  &-fav, &-fav-anim
     height: 0.75rem
     width: 0.75rem
 
+  &-fav-anim
+    position: absolute
+    z-index: 1
+
 
 .home-card.links
+  padding: 0.5rem 1rem
   display: grid
   grid-template-columns: 1fr 5fr
   align-items: center
 
-  padding: 0.5rem 1rem
-
   @media (max-width: $s-screen)
+    padding: 1rem
     grid-template-columns: 1fr
 
     h1
-      margin-bottom: 0.25rem
+      margin-bottom: 0.5rem
 
   .external-links
     display: flex
