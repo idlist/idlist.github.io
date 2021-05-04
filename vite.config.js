@@ -14,6 +14,12 @@ const config = {
       input: {
         'index': resolve(__dirname, 'index.html'),
         '404': resolve(__dirname, '404/index.html')
+      },
+      output: {
+        manualChunks: {
+          mithril: ['mithril'],
+          popmotion: ['popmotion']
+        }
       }
     },
   },

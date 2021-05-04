@@ -7,31 +7,32 @@ class ClickEffect {
   constructor() {
     this.id = 0
     this.Ripples = []
+
+    this.circle = {}
   }
   animateRipple(id) {
     let t = this.Ripples.find(el => el.id == id)
-    let duration = 500
+    let duration = 1000
 
-    // size
+    // radius
     animate({
-      from: t.size,
-      to: t.size + 200 * t.sizeCoef,
+      from: t.radius,
+      to: t.radius + 1000,
       duration: duration,
       ease: [easeOut],
       onUpdate: value => {
-        t.size = value
+        t.radius = value
         m.redraw()
       }
     })
 
-    // rotation
+    // stroke
     animate({
-      from: t.rotate,
-      to: t.rotate + 75,
+      from: t.strokeWidth,
+      to: 0,
       duration: duration,
-      ease: [easeOut],
       onUpdate: value => {
-        t.rotate = value
+        t.strokeWidth = value
         m.redraw()
       }
     })
@@ -52,43 +53,97 @@ class ClickEffect {
       m.redraw()
     }, duration)
   }
-  generateRipple(event) {
-    let randRotate = Math.random() * 45
+  animateCircle() {
+    let duration = 500
 
-    for (let i = 0; i < 3; i++) {
-      setTimeout(() => {
-        this.Ripples.push({
-          id: this.id,
-          x: event.clientX,
-          y: event.clientY,
-          size: 0,
-          sizeCoef: 1 - 0.05 * i,
-          rotate: randRotate + i * 15,
-          opacity: 1
-        })
-        this.animateRipple(this.id)
-        this.id++
-      }, i * 50)
+    // radius
+    animate({
+      from: 100,
+      to: 10,
+      duration: duration,
+      ease: [easeOut],
+      onUpdate: value => {
+        this.circle.radius = value
+        m.redraw()
+      }
+    })
+
+    // stroke
+    animate({
+      from: 0,
+      to: 2,
+      duration: duration,
+      onUpdate: value => {
+        this.circle.strokeWidth = value
+        m.redraw()
+      }
+    })
+
+    // opacity
+    animate({
+      from: 0,
+      to: 1,
+      duration: duration,
+      onUpdate: value => {
+        this.circle.opacity = value
+        m.redraw()
+      }
+    })
+  }
+  generateCircle(event) {
+    this.circle = {
+      id: this.circleId,
+      x: event.clientX,
+      y: event.clientY,
+      radius: 0,
+      strokeWidth: 2,
+      opacity: 1
     }
+    this.animateCircle()
+  }
+  releaseCircle(event) {
+    this.circle = {}
+
+    this.Ripples.push({
+      id: this.id,
+      x: event.clientX,
+      y: event.clientY,
+      radius: 0,
+      strokeWidth: 2,
+      opacity: 1
+    })
+    this.animateRipple(this.id)
+    this.id++
   }
   view(vnode) {
     return (
-      <div class='click-effect-frame' onclick={ event => this.generateRipple(event) }>
+      <div
+        class='click-effect-frame'
+        onmousedown={ event => this.generateCircle(event) }
+        onmouseup={ event => this.releaseCircle(event) }>
         { vnode.children }
         <div class='click-effect-wrapper'>
           <svg class='click-effect' xmlns='http://www.w3.org/2000/svg' version='1.1'>
             { this.Ripples.map(i => (
-              <rect
+              <circle
                 stroke='#eee'
-                stroke-width='1px'
+                stroke-width={ `${i.strokeWidth}px` }
                 fill='transparent'
-                x={ i.x - i.size / 2 }
-                y={ i.y - i.size / 2 }
-                width={ i.size }
-                height={ i.size }
-                opacity={ i.opacity }
-                transform={ `rotate(${i.rotate}, ${i.x}, ${i.y})` } />
+                cx={ i.x }
+                cy={ i.y }
+                r={ i.radius / 2 }
+                opacity={ i.opacity } />
             )) }
+            { this.circle ? (
+              <circle
+                stroke='#eee'
+                stroke-width={ `${this.circle.strokeWidth}px` }
+                fill='transparent'
+                cx={ this.circle.x }
+                cy={ this.circle.y }
+                r={ this.circle.radius }
+                opacity={ this.circle.opacity } />
+            ) : null }
           </svg>
         </div>
       </div>
