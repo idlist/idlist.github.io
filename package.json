@@ -8,7 +8,8 @@
   },
   "dependencies": {
     "lodash-es": "^4.0.0",
-    "mithril": "^2.0.0"
+    "mithril": "^2.0.0",
+    "popmotion": "^9.0.0"
   },
   "devDependencies": {
     "eslint-plugin-react": "^7.0.0",

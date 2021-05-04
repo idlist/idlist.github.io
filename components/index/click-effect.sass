@@ -1,4 +1,14 @@
 @import '../constants'
 
-.click-effect-wrapper
-  @extend %fullscreen
+.click-effect
+  width: 100%
+  height: 100%
+
+  &-frame
+    @extend %fullscreen
+
+  &-wrapper
+    @extend %fullscreen
+    z-index: 10
+
+    pointer-events: none
