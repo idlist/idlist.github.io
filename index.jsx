@@ -2,6 +2,7 @@ import m from 'mithril'
 import './components/fragment-polyfix'
 
 import Navbar from './components/index/navbar'
+import ClickEffect from './components/index/click-effect'
 import HomeContent from './components/index/home'
 import DimensionsContent from './components/index/dimensions'
 import './index.sass'
@@ -9,12 +10,14 @@ import './index.sass'
 class Layout {
   view(vnode) {
     return (
-      <>
+      <ClickEffect>
+        <div class='main-wrapper'>
+          <article class='main-container'>
+            { vnode.children }
+          </article>
+        </div>
         <Navbar />
-        <article class='container'>
-          { vnode.children }
-        </article>
-      </>
+      </ClickEffect>
     )
   }
 }

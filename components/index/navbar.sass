@@ -9,12 +9,6 @@
   justify-content: space-between
   align-items: center
 
-%absolute
-  top: 0
-  left: 0
-  right: 0
-  bottom: 0
-  position: absolute
 
 nav
   width: 100%
@@ -25,7 +19,6 @@ nav
 
   .header
     background-color: #eee
-    z-index: 2
 
     display: flex
 
@@ -34,7 +27,6 @@ nav
 
     &-icon
       height: 2.5rem
-      margin-left: 0.5rem
 
     &-dropdown
       height: 0.75rem
@@ -42,6 +34,7 @@ nav
       z-index: 2
 
       transition: transform 0.5s
+
 
       &.rotated
         transform: rotate(90deg)
@@ -86,31 +79,29 @@ nav
     text-decoration: none
 
     position: relative
-    z-index: 1
 
-    &::before
+    .tag-background
       @extend %absolute
-      content: ''
 
       background: #fff
       opacity: 0
-      z-index: 0
 
       transition: opacity 0.1s linear
 
       @media (max-width: $s-screen)
         display: none
 
-    &:hover::before
-      opacity: 1
+      &:hover
+        opacity: 1
 
-    &:active::before
-      background-color: #ddd
-      z-index: 2
+      &:active
+        background-color: #ddd
 
     .tag
-      color: #333333
+      pointer-events: none
       z-index: 2
+
+      color: #333333
 
   .tag-selected
     background: linear-gradient(#9fffa8, #2fd2ff)

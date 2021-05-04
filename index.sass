@@ -2,12 +2,27 @@
 @import 'components/open-sans'
 
 body
-  margin: 0 auto
+  margin: 0
   color: #333
   background-color: #333
   font-family: $font-stack
 
-.container
+.main-wrapper
+  @extend %fullscreen
+  top: 2.5rem
+
+  overflow-y: scroll
+
+.main-container
   max-width: 768px
   margin: 0 auto
-  padding: 2.5rem 1rem 1rem 1rem
+  padding: 1rem
+
+::-webkit-scrollbar
+  width: 6px
+
+  &-thumb
+    background-color: #eee
+
+  &-track
+    background-color: #333

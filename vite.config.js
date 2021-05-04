@@ -6,6 +6,9 @@ import { resolve } from 'path'
  * @type { import('vite').UserConfig }
  */
 const config = {
+  server: {
+    port: '14514'
+  },
   build: {
     rollupOptions: {
       input: {

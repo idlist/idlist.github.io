@@ -69,7 +69,7 @@ class HomeCard {
         class='home-card'
         style={ `height: ${this.heightStyle}` }>
         <h1>
-          <span>{ vnode.attrs.cardTitle }</span>
+          <span>{ vnode.attrs.cardTitle ?? 'title' }</span>
           <img
             class={ 'home-card-dropdown' + (this.open ? '' : ' closed') }
             style={ `pointer-events: ${this.dropdownStyle};` }

@@ -44,6 +44,7 @@ class Navbar {
               <m.route.Link
                 href='/home'
                 class={ this.setTagClass('/home') }>
+                <div class='tag-background' />
                 <div class='tag'>Home</div>
               </m.route.Link>
               <m.route.Link
@@ -51,6 +52,7 @@ class Navbar {
                 class={ this.setTagClass('/dim') }
                 onmouseover={ () => { this.displaySubTag = true } }
                 onmouseout={ () => { this.displaySubTag = false } }>
+                <div class='tag-background' />
                 <div class='tag'>Dimensions</div>
                 <img
                   class={ 'header-dropdown '

@@ -96,11 +96,11 @@ class ThingsUsed {
                   <span class={ site.link ? 'things-used-link' : 'things-used-no-link' }>
                     { site.site }
                   </span>
-                  { site.fav &&
+                  { site.fav ?
                     <div class='things-used-fav-container'>
                       <img class='things-used-fav' src='/pics/heart.png' alt='fav' />
                       <img class='things-used-fav-anim' src='/pics/heart.png' alt='fav-anim' />
-                    </div>
+                    </div> : null
                   }
                 </a>
               )) }
