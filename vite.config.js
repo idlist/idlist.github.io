@@ -25,7 +25,7 @@ const config = {
   },
   esbuild: {
     jsxFactory: 'm',
-    jsxFragment: 'm.Fragment'
+    jsxFragment: '"["'
   }
 }
 

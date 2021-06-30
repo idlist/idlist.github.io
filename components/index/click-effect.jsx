@@ -134,7 +134,7 @@ class ClickEffect {
                 r={ i.radius / 2 }
                 opacity={ i.opacity } />
             )) }
-            { this.circle ? (
+            { Object.keys(this.circle).length ? (
               <circle
                 stroke='#eee'
                 stroke-width={ `${this.circle.strokeWidth}px` }

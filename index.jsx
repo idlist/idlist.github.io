@@ -1,5 +1,4 @@
 import m from 'mithril'
-import './components/fragment-polyfix'
 
 import Navbar from './components/index/navbar'
 import ClickEffect from './components/index/click-effect'
