@@ -113,7 +113,7 @@ class ThingsUsed {
 }
 
 const LinksList = [
-  { site: 'UN1C0DE', icon: 'un1c0de', link: 'https://un1c0de.xyz/' },
+  { site: 'UN1C0DE', icon: 'un1c0de', link: 'https://un1c0de.xyz/' }
 ]
 
 class ExternalLinks {

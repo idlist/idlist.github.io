@@ -3,52 +3,17 @@
 .home-card.footer
   padding: 0.5rem 1rem
   display: flex
-  justify-content: space-between
+  justify-content: center
   align-items: center
+  column-gap: 0.25rem
 
-  @media (max-width: $s-screen)
-    display: block
+  font-size: 0.875rem
+  color: #666
 
-  hr
-    display: none
-
-    @media (max-width: $s-screen)
-      display: block
-
-  .copyright
-    font-size: 0.875rem
+  a
     color: #666
+    transition: all 0.25s
 
-    @media (max-width: $s-screen)
-      text-align: center
-      margin-bottom: 0.25rem
-
-  .bmc
-    display: flex
-    align-items: center
-    justify-content: space-between
-
-    @media (max-width: $s-screen)
-      padding: 0.5rem 0
-
-    &-text
-      font-size: 0.875rem
-      padding-right: 0.5rem
-
-    &-button
-      display: flex
-      align-items: center
-      background-color: #333
-      padding: 0.5rem 0.75rem
-
-      &:hover
-        background-color: #666
-
-      &:active
-        background-color: #999
-
-      &, &:hover, &:active
-        transition: background-color 0.25s
-
-    img
-      height: 2rem
+    &:hover
+      color: #999
+      transition: all 0.25s
