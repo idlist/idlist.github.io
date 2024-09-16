@@ -1,0 +1,40 @@
+{
+  "name": "idlist.github.io",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build --force",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@types/eslint__js": "^8.42.3",
+    "@vueuse/core": "^11.1.0",
+    "popmotion": "^11.0.5",
+    "vue": "^3.5.6",
+    "vue-i18n": "^10.0.1",
+    "vue-router": "^4.4.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.10.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^22.5.5",
+    "@vitejs/plugin-vue": "^5.1.3",
+    "@vue/tsconfig": "^0.5.1",
+    "eslint": "^9.10.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "globals": "^15.9.0",
+    "npm-run-all2": "^6.2.3",
+    "sass": "^1.78.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.5.0",
+    "vite": "^5.4.5",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.1.6"
+  }
+}
