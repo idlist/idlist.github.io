@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+// import { RouterLink, RouterView } from 'vue-router'
+import BgDynamic from '@/components/background/BgDynamic.vue'
+// import BgFilter from './components/background/BgFilter.vue'
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">
-          Home
-        </RouterLink>
-        <RouterLink to="/about">
-          About
-        </RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <BgDynamic />
+  <!-- <BgFilter :hue="10" /> -->
 </template>
 
 <style scoped>
