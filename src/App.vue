@@ -4,15 +4,18 @@ import BgDynamic from '@/components/background/BgDynamic.vue'
 // import BgFilter from './components/background/BgFilter.vue'
 import PageList from './components/page/PageList.vue'
 import PageContent from './components/page/PageContent.vue'
+import PageDivider from './components/page/PageDivider.vue'
 </script>
 
 <template>
   <BgDynamic />
-  <!-- <BgFilter :hue="10" /> -->
   <PageList>
+    <PageContent>Home</PageContent>
+    <PageDivider />
     <PageContent>1</PageContent>
     <PageContent>2</PageContent>
-    <PageContent>3</PageContent>
+    <PageDivider />
+    <PageContent>Footer</PageContent>
   </PageList>
 </template>
 

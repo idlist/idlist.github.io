@@ -1,17 +1,34 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import PageMorphDot from './PageMorphDot.vue'
-import { range } from '@/utils'
+import type { PageNavigatorItem } from './types'
+import { createArray } from '@/utils'
 
 const props = defineProps<{
-  numberOfPages: number
+  status: PageNavigatorItem[]
 }>()
+
+const emit = defineEmits<{
+  (e: 'jumpTo', index: number): void
+}>()
+
+const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(false))
 </script>
 
 <template>
   <div class="page-navigator">
-    <div v-for="i in range(numberOfPages)" :key="i" class="page-navigator-dot">
-      <PageMorphDot />
-    </div>
+    <template v-for="(state, i) of status" :key="i">
+      <div v-if="state.type == 'dot'"
+        class="page-navigator-dot"
+        @mouseover="hover[i] = true"
+        @mouseleave="hover[i] = false"
+        @click="emit('jumpTo', i)">
+        <PageMorphDot
+          :percent="state.progress"
+          :hover="hover[i]" />
+      </div>
+      <div v-if="state.type == 'divider'" class="page-navigator-divider"></div>
+    </template>
   </div>
 </template>
 
@@ -24,16 +41,24 @@ const props = defineProps<{
 
   display: flex;
   flex-direction: column;
-  row-gap: 0.5rem;
 
   background-color: hsla(0, 0%, 100%, 80%);
   border: 1px solid black;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  padding: 0.25rem;
+
+  box-shadow: 0 0 8px hsla(0, 0%, 0%, 25%);
 }
 
 .page-navigator-dot {
-  width: 1rem;
-  height: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.page-navigator-divider {
+  margin: 0.25rem;
+  border-bottom: 1px solid hsl(0, 0%, 10%);
 }
 </style>
