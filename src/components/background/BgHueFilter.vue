@@ -7,13 +7,12 @@ const cssColor = `hsla(${props.hue ?? 10}, 100%, 50%, 0.5)`
 </script>
 
 <template>
-  <div class="static bg-filter">
-    <slot></slot>
-  </div>
+  <div class="static bg-filter"></div>
 </template>
 
 <style lang="scss">
 .bg-filter {
+  position: absolute;
   min-width: 100%;
   min-height: 100%;
 

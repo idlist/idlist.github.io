@@ -123,12 +123,13 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   const page = pagesRef[index].value
   const rect = page.getBoundingClientRect()
 
-  let destination: number
+  let delta: number
   if (align == 'top') {
-    destination = window.scrollY + rect.top
+    delta = rect.top
   } else {
-    destination = window.scrollY + rect.bottom - height.value
+    delta = rect.bottom - height.value
   }
+  const destination = window.scrollY + delta
 
   cancelMagnetScroll()
 
@@ -139,7 +140,7 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   magnetScrollAnimation = animate({
     from: window.scrollY,
     to: destination,
-    duration: 500,
+    duration: Math.abs(delta) / height.value * 1500,
     onUpdate: (value) => window.scrollTo({ top: value, behavior: 'instant' }),
   })
 }

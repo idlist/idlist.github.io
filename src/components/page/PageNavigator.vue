@@ -42,7 +42,7 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
   display: flex;
   flex-direction: column;
 
-  background-color: hsla(0, 0%, 100%, 80%);
+  background-color: hsla(0, 0%, 100%, 90%);
   border: 1px solid black;
   border-radius: 0.5rem;
   padding: 0.25rem;
