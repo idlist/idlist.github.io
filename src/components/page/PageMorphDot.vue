@@ -32,29 +32,22 @@ const pathNumberMorph = interpolate([0, 1], [pathNumbersCircle, pathNumbersStar]
 const initialPercent = clamp(0, 1, (props.percent ?? 0))
 const progress = ref(initialPercent)
 
-let playback: ReturnType<typeof animate> | null = null
+let animation: ReturnType<typeof animate> | null = null
 
 watch(() => props.percent ?? 0, (next, prev) => {
   if (next == prev) {
     return
   }
 
-  if (playback) {
-    playback.stop()
+  if (animation) {
+    animation.stop()
   }
-  playback = animate({
+
+  animation = animate({
     from: progress.value,
     to: next,
     duration: Math.abs(progress.value - next) * 200,
-    onUpdate(latest) {
-      progress.value = latest
-    },
-    onStop() {
-      playback = null
-    },
-    onComplete() {
-      playback?.stop()
-    },
+    onUpdate: (latest) => progress.value = latest,
   })
 })
 

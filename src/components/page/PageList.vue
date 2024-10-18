@@ -3,6 +3,7 @@ import { defineComponent, h, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
 import debounce from 'lodash-es/debounce'
+import { animate, clamp } from 'popmotion'
 import type { PageNavigatorItem } from './types'
 
 const { height } = useWindowSize()
@@ -22,7 +23,7 @@ const Pages = defineComponent({
       const page = ref()
       pagesRef[i] = page
       if (element?.type?.name == 'PageContent') {
-        return h('div', { ref: page }, element)
+        return h('div', { class: 'page-content', ref: page }, element)
       }
     })
   },
@@ -47,16 +48,51 @@ watch(() => slots.default(), () => {
   navigatorStatus.value = setupNavigatorStatus()
 })
 
-const updateNavigatorStatus = (h: number) => {
+let magnetScrollTimeout: ReturnType<typeof setTimeout> | null = null
+let magnetScrollAnimation: ReturnType<typeof animate> | null = null
+
+const cancelMagnetScroll = () => {
+  if (magnetScrollTimeout) {
+    clearTimeout(magnetScrollTimeout)
+    magnetScrollTimeout = null
+  }
+}
+
+type ScrollAlign = 'top' | 'bottom'
+
+const updateNavigatorStatus = (windowHeight: number) => {
+  let closestDistance = 1
+  let closestIndex = 0
+  let insidePage = false
+  let scrollAlign: ScrollAlign = 'top'
+
   for (const [istr, page] of Object.entries(pagesRef)) {
     const i = parseInt(istr)
     if (navigatorStatus.value[i].type != 'dot') {
       continue
     }
 
-    const top = page.value.getBoundingClientRect().top
-    const progress = (h - top) / h
-    const peek = progress <= 1 ? progress : 2 - progress
+    const rect = page.value.getBoundingClientRect()
+    const { top, bottom, height } = rect
+
+    if (top <= 0 && bottom >= windowHeight) {
+      insidePage = true
+    }
+
+    const progress = (height - top) / height
+    const peek = clamp(0, 1, progress <= 1 ? progress : 2 - progress)
+    const distance = 1 - peek
+    if (distance < closestDistance) {
+      closestIndex = i
+      closestDistance = distance
+
+      if (Math.abs(top) <= Math.abs(bottom - windowHeight)) {
+        scrollAlign = 'top'
+      } else {
+        scrollAlign = 'bottom'
+      }
+    }
+
     let percent = 0
     if (peek < 0.25) {
       percent = 0
@@ -68,19 +104,55 @@ const updateNavigatorStatus = (h: number) => {
 
     navigatorStatus.value[i].progress = percent
   }
+
+  cancelMagnetScroll()
+
+  if (insidePage) {
+    return
+  }
+
+  magnetScrollTimeout = setTimeout(() => {
+    jumpTo(closestIndex, scrollAlign)
+    magnetScrollTimeout = null
+  }, 1000)
 }
 
-watch([height, y], debounce(([h, _]) => updateNavigatorStatus(h), 100), { immediate: true })
+watch([height, y], debounce(([wh, _]) => updateNavigatorStatus(wh), 100), { immediate: true })
 
-const jumpTo = (index: number) => {
+const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   const page = pagesRef[index].value
-  const destination = window.scrollY + page.getBoundingClientRect().top
+  const rect = page.getBoundingClientRect()
 
-  window.scrollTo({ top: destination, behavior: 'smooth' })
+  let destination: number
+  if (align == 'top') {
+    destination = window.scrollY + rect.top
+  } else {
+    destination = window.scrollY + rect.bottom - height.value
+  }
+
+  cancelMagnetScroll()
+
+  if (magnetScrollAnimation) {
+    magnetScrollAnimation.stop()
+  }
+
+  magnetScrollAnimation = animate({
+    from: window.scrollY,
+    to: destination,
+    duration: 500,
+    onUpdate: (value) => window.scrollTo({ top: value, behavior: 'instant' }),
+  })
 }
 </script>
 
 <template>
-  <PageNavigator :status="navigatorStatus" @jump-to="jumpTo" />
   <Pages />
+  <PageNavigator :status="navigatorStatus" @jump-to="jumpTo" />
 </template>
+
+<style lang="scss">
+.page-content {
+  min-width: 100%;
+  min-height: 75vh;
+}
+</style>

@@ -46,6 +46,7 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
   border: 1px solid black;
   border-radius: 0.5rem;
   padding: 0.25rem;
+  z-index: 1;
 
   box-shadow: 0 0 8px hsla(0, 0%, 0%, 25%);
 }
