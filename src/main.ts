@@ -9,7 +9,6 @@ import { useLocaleStorage } from './uses'
 
 import en, { type LocaleSchema } from './locales/en'
 import zh from './locales/zh'
-import ja from './locales/ja'
 import type { Locales } from './types'
 
 const localeStore = useLocaleStorage()
@@ -18,7 +17,7 @@ const i18n = createI18n<LocaleSchema, Locales>({
   legacy: false,
   locale: localeStore.value,
   fallbackLocale: 'en',
-  messages: { en, zh, ja },
+  messages: { en, zh },
 })
 
 const app = createApp(App)

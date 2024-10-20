@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^11.1.0",
+    "autoprefixer": "^10.4.20",
     "lodash-es": "^4.17.21",
     "normalize.css": "^8.0.1",
     "popmotion": "^11.0.5",

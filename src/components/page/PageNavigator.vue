@@ -16,7 +16,7 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
 </script>
 
 <template>
-  <div class="page-navigator">
+  <div class="card page-navigator">
     <template v-for="(state, i) of status" :key="i">
       <div v-if="state.type == 'dot'"
         class="page-navigator-dot"
@@ -34,6 +34,7 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
 
 <style lang="scss">
 .page-navigator {
+  z-index: 1;
   position: fixed;
   right: 1rem;
   top: 50%;
@@ -41,14 +42,6 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
 
   display: flex;
   flex-direction: column;
-
-  background-color: hsla(0, 0%, 100%, 90%);
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  padding: 0.25rem;
-  z-index: 1;
-
-  box-shadow: 0 0 8px hsla(0, 0%, 0%, 25%);
 }
 
 .page-navigator-dot {
