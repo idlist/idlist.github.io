@@ -3,7 +3,7 @@ import { defineComponent, h, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
 import debounce from 'lodash-es/debounce'
-import { animate, clamp } from 'popmotion'
+import { animate, clamp, easeInOut } from 'popmotion'
 import type { PageNavigatorItem } from './types'
 
 const { height } = useWindowSize()
@@ -140,7 +140,8 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   magnetScrollAnimation = animate({
     from: window.scrollY,
     to: destination,
-    duration: Math.abs(delta) / height.value * 1500,
+    duration: Math.max(Math.abs(delta) / height.value * 500, 250),
+    ease: [easeInOut],
     onUpdate: (value) => window.scrollTo({ top: value, behavior: 'instant' }),
   })
 }

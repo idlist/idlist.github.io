@@ -1,9 +1,9 @@
 import { useStorage } from '@vueuse/core'
-import type { Locales } from './types'
+import type { SupportedLocale } from './main'
 
 export const useLocaleStorage = () => {
   const browserLocale = navigator.language
-  const defaultLocale = browserLocale.split('-')[0].toLowerCase() as Locales
+  const defaultLocale = browserLocale.split('-')[0].toLowerCase() as SupportedLocale
 
-  return useStorage<Locales>('locale', defaultLocale)
+  return useStorage<SupportedLocale>('locale', defaultLocale)
 }

@@ -9,11 +9,12 @@ import { useLocaleStorage } from './uses'
 
 import en, { type LocaleSchema } from './locales/en'
 import zh from './locales/zh'
-import type { Locales } from './types'
+
+export type SupportedLocale = 'en' | 'zh'
 
 const localeStore = useLocaleStorage()
 
-const i18n = createI18n<LocaleSchema, Locales>({
+const i18n = createI18n<LocaleSchema, SupportedLocale>({
   legacy: false,
   locale: localeStore.value,
   fallbackLocale: 'en',

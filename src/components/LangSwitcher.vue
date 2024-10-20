@@ -2,15 +2,35 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Globe from '@/assets/svgrepo/globe.svg'
-import type { Locales } from '@/types'
+import type { SupportedLocale } from '@/main'
+import { useLocaleStorage } from '@/uses'
 
 const { locale } = useI18n()
+const localeStorage = useLocaleStorage()
+
 const isOpen = ref(false)
 
-const toLang = (lang: Locales) => {
+const toLang = (lang: SupportedLocale) => {
   locale.value = lang
+  localeStorage.value = lang
   isOpen.value = false
 }
+
+interface Lang {
+  code: SupportedLocale
+  name: string
+}
+
+const langs: Lang[] = [
+  {
+    code: 'en',
+    name: 'English',
+  },
+  {
+    code: 'zh',
+    name: '简体中文',
+  },
+]
 </script>
 
 <template>
@@ -19,7 +39,7 @@ const toLang = (lang: Locales) => {
       type="button"
       class="card lang-switcher"
       @click="isOpen = true">
-      <div>
+      <div class="lang-switcher__container">
         <img :src="Globe" alt="switch language" />
       </div>
     </button>
@@ -29,28 +49,21 @@ const toLang = (lang: Locales) => {
 
   <Transition name="lang-list">
     <div v-show="isOpen" class="card lang-list">
-      <button type="button" @click="toLang('en')">
-        English
-      </button>
-      <button type="button" @click="toLang('zh')">
-        简体中文
+      <button
+        v-for="lang of langs"
+        :key="lang.code"
+        type="button"
+        @click="toLang(lang.code)">
+        {{ lang.name }}
+        <div class="lang-list__selected">
+          <span v-show="lang.code == locale">•</span>
+        </div>
       </button>
     </div>
   </Transition>
 </template>
 
 <style lang="scss">
-.lang-switcher-enter-from,
-.lang-switcher-leave-to {
-  transform: rotate(30deg);
-  opacity: 0;
-}
-
-.lang-switcher-enter-active,
-.lang-switcher-leave-active {
-  transition: all 0.5s ease-out;
-}
-
 .lang-switcher {
   z-index: 16;
   position: fixed;
@@ -64,12 +77,12 @@ const toLang = (lang: Locales) => {
   border-radius: 50%;
   cursor: pointer;
 
-  div {
+  &__container {
     display: flex;
     padding: 0.125rem;
   }
 
-  div:hover {
+  &__container:hover {
     border-radius: 50%;
     background-color: hsla(0, 0%, 0%, 10%);
   }
@@ -78,21 +91,17 @@ const toLang = (lang: Locales) => {
     width: 100%;
     height: 100%;
   }
-}
 
-.lang-list-enter-from,
-.lang-list-leave-to {
-  transform: translateX(-0.5rem);
-  opacity: 0;
-}
+  &-enter-from,
+  &-leave-to {
+    transform: rotate(30deg);
+    opacity: 0;
+  }
 
-.lang-list-enter-active,
-.lang-list-leave-active {
-  transition: all 0.5s ease;
-}
-
-.lang-list__close {
-  z-index: 15;
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.5s ease-out;
+  }
 }
 
 .lang-list {
@@ -106,14 +115,35 @@ const toLang = (lang: Locales) => {
   flex-direction: column;
   text-align: right;
 
+  &__close {
+    z-index: 15;
+  }
+
   button {
     font-size: 0.875rem;
-    padding: 0.375rem 0.75rem;
+    padding: 0.375rem 0.5rem 0.375rem 0.75rem;
     border-radius: 0.25rem;
+  }
 
-    &:hover {
-      background-color: hsla(0, 0%, 0%, 10%);
-    }
+  button:hover {
+    background-color: hsla(0, 0%, 0%, 10%);
+  }
+
+  &__selected {
+    display: inline-block;
+    width: 0.5rem;
+    text-align: right;
+  }
+
+  &-enter-from,
+  &-leave-to {
+    transform: translateX(-0.5rem);
+    opacity: 0;
+  }
+
+  &-enter-active,
+  &-leave-active {
+    transition: all 0.5s ease;
   }
 }
 </style>
