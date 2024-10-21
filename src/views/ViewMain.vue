@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import PageList from '@/components/page/PageList.vue'
 import PageContent from '@/components/page/PageContent.vue'
-import PageDivider from '@/components/page/PageDivider.vue'
-import PageHome from './ViewMain/PageHome.vue'
-import PageAbility from './ViewMain/PageAbility.vue'
+// import PageDivider from '@/components/page/PageDivider.vue'
+import PageHome from './view-main/PageHome.vue'
+import PageAbility from './view-main/PageAbility.vue'
 </script>
 
 <template>
@@ -11,12 +11,11 @@ import PageAbility from './ViewMain/PageAbility.vue'
     <PageContent>
       <PageHome />
     </PageContent>
-    <PageDivider />
     <PageContent>
       <PageAbility />
     </PageContent>
-    <PageContent>2</PageContent>
-    <PageDivider />
-    <PageContent>footer</PageContent>
+    <PageContent>
+      Footer
+    </PageContent>
   </PageList>
 </template>

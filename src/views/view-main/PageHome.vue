@@ -7,6 +7,16 @@ const { t } = useI18n()
 
 <template>
   <FullPage>
-    {{ t('hello-world') }}
+    <div class="home">
+      i'DLisT
+    </div>
   </FullPage>
 </template>
+
+<style lang="scss">
+.home {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+</style>

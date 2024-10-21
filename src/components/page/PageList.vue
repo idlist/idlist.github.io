@@ -3,7 +3,7 @@ import { defineComponent, h, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
 import debounce from 'lodash-es/debounce'
-import { animate, clamp, easeInOut } from 'popmotion'
+import { animate, easeInOut } from 'popmotion'
 import type { PageNavigatorItem } from './types'
 
 const { height } = useWindowSize()
@@ -61,8 +61,8 @@ const cancelMagnetScroll = () => {
 type ScrollAlign = 'top' | 'bottom'
 
 const updateNavigatorStatus = (windowHeight: number) => {
-  let closestDistance = 1
-  let closestIndex = 0
+  let mostDisplayed = 0
+  let mostIndex = 0
   let insidePage = false
   let scrollAlign: ScrollAlign = 'top'
 
@@ -73,31 +73,39 @@ const updateNavigatorStatus = (windowHeight: number) => {
     }
 
     const rect = page.value.getBoundingClientRect()
-    const { top, bottom, height } = rect
+    const { top, bottom } = rect
+
+    let displayed = 0
 
     if (top <= 0 && bottom >= windowHeight) {
+      displayed = 1
       insidePage = true
+    } else if (top > 0 && top <= windowHeight && bottom > 0 && bottom < windowHeight) {
+      displayed = 1
+    } else if (top <= 0 && bottom > 0 && bottom < windowHeight) {
+      displayed = bottom / windowHeight
+    } else if (top > 0 && top <= windowHeight && bottom >= windowHeight) {
+      displayed = (windowHeight - top) / windowHeight
     }
 
-    const progress = (height - top) / height
-    const peek = clamp(0, 1, progress <= 1 ? progress : 2 - progress)
-    const distance = 1 - peek
-    if (distance < closestDistance) {
-      closestIndex = i
-      closestDistance = distance
+    if (displayed >= mostDisplayed) {
+      mostIndex = i
+      mostDisplayed = displayed
 
-      if (Math.abs(top) <= Math.abs(bottom - windowHeight)) {
+      if (top >= 0 && bottom > windowHeight) {
         scrollAlign = 'top'
-      } else {
+      } else if (top < 0 && bottom <= windowHeight) {
         scrollAlign = 'bottom'
+      } else {
+        scrollAlign = top > windowHeight - bottom ? 'top' : 'bottom'
       }
     }
 
     let percent = 0
-    if (peek < 0.25) {
+    if (displayed < 0.25) {
       percent = 0
-    } else if (peek < 0.75) {
-      percent = (peek - 0.25) * 2
+    } else if (displayed < 0.75) {
+      percent = (displayed - 0.25) * 2
     } else {
       percent = 1
     }
@@ -112,7 +120,7 @@ const updateNavigatorStatus = (windowHeight: number) => {
   }
 
   magnetScrollTimeout = setTimeout(() => {
-    jumpTo(closestIndex, scrollAlign)
+    jumpTo(mostIndex, scrollAlign)
     magnetScrollTimeout = null
   }, 1000)
 }
@@ -120,27 +128,28 @@ const updateNavigatorStatus = (windowHeight: number) => {
 watch([height, y], debounce(([wh, _]) => updateNavigatorStatus(wh), 100), { immediate: true })
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
-  const page = pagesRef[index].value
-  const rect = page.getBoundingClientRect()
-
-  let delta: number
-  if (align == 'top') {
-    delta = rect.top
-  } else {
-    delta = rect.bottom - height.value
-  }
-  const destination = window.scrollY + delta
-
   cancelMagnetScroll()
 
   if (magnetScrollAnimation) {
     magnetScrollAnimation.stop()
   }
 
+  const page = pagesRef[index].value
+  const { top, bottom } = page.getBoundingClientRect()
+
+  const delta = align == 'top' ? top : bottom
+  let to = window.scrollY + delta
+  const toMax = document.body.scrollHeight - height.value
+  if (to > toMax) {
+    to = toMax
+  }
+  const from = window.scrollY
+  const duration = Math.max(Math.abs(from - to) / height.value * 500, 250)
+
   magnetScrollAnimation = animate({
-    from: window.scrollY,
-    to: destination,
-    duration: Math.max(Math.abs(delta) / height.value * 500, 250),
+    from,
+    to,
+    duration,
     ease: [easeInOut],
     onUpdate: (value) => window.scrollTo({ top: value, behavior: 'instant' }),
   })
@@ -155,6 +164,5 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
 <style lang="scss">
 .page-content {
   min-width: 100%;
-  min-height: 75vh;
 }
 </style>

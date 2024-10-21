@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import Globe from '@/assets/svgrepo/globe.svg'
 import type { SupportedLocale } from '@/main'
 import { useLocaleStorage } from '@/uses'
+
+import Globe from '@/assets/svgrepo/globe.svg'
+import ArrowLeft from '@/assets/svgrepo/arrow_left.svg'
 
 const { locale } = useI18n()
 const localeStorage = useLocaleStorage()
@@ -56,7 +58,7 @@ const langs: Lang[] = [
         @click="toLang(lang.code)">
         {{ lang.name }}
         <div class="lang-list__selected">
-          <span v-show="lang.code == locale">•</span>
+          <img v-if="lang.code == locale" :src="ArrowLeft" alt="current language" />
         </div>
       </button>
     </div>
@@ -113,7 +115,6 @@ const langs: Lang[] = [
 
   display: flex;
   flex-direction: column;
-  text-align: right;
 
   &__close {
     z-index: 15;
@@ -121,8 +122,13 @@ const langs: Lang[] = [
 
   button {
     font-size: 0.875rem;
-    padding: 0.375rem 0.5rem 0.375rem 0.75rem;
+    padding: 0.375rem 0.25rem 0.375rem 0.75rem;
     border-radius: 0.25rem;
+
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    column-gap: 0.125rem;
   }
 
   button:hover {
@@ -130,9 +136,15 @@ const langs: Lang[] = [
   }
 
   &__selected {
-    display: inline-block;
-    width: 0.5rem;
-    text-align: right;
+    width: 1rem;
+    height: 1rem;
+    padding: 0.125rem;
+
+    img {
+      width: 100%;
+      height: 100%;
+      transform: translateY(-1px);
+    }
   }
 
   &-enter-from,
