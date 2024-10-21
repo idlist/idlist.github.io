@@ -41,7 +41,7 @@ const langs: Lang[] = [
       type="button"
       class="card lang-switcher"
       @click="isOpen = true">
-      <div class="lang-switcher__container">
+      <div class="lang-switcher__container fx-quick-hover">
         <img :src="Globe" alt="switch language" />
       </div>
     </button>
@@ -55,6 +55,7 @@ const langs: Lang[] = [
         v-for="lang of langs"
         :key="lang.code"
         type="button"
+        class="fx-quick-hover"
         @click="toLang(lang.code)">
         {{ lang.name }}
         <div class="lang-list__selected">

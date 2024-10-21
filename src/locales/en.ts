@@ -1,6 +1,9 @@
 const en = {
   'lang': 'English',
   'hello-world': 'Hello, World!',
+  'socials': {
+    'email': 'Email',
+  },
 }
 
 export default en

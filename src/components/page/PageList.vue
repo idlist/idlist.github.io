@@ -137,7 +137,7 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   const page = pagesRef[index].value
   const { top, bottom } = page.getBoundingClientRect()
 
-  const delta = align == 'top' ? top : bottom
+  const delta = align == 'top' ? top : (bottom - height.value)
   let to = window.scrollY + delta
   const toMax = document.body.scrollHeight - height.value
   if (to > toMax) {

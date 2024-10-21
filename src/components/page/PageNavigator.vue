@@ -19,7 +19,7 @@ const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(fals
   <div class="card page-navigator">
     <template v-for="(state, i) of status" :key="i">
       <div v-if="state.type == 'dot'"
-        class="page-navigator-dot"
+        class="no-click-fx page-navigator-dot"
         @mouseover="hover[i] = true"
         @mouseleave="hover[i] = false"
         @click="emit('jumpTo', i)">

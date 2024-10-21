@@ -40,7 +40,20 @@
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+
+  &, &:visited, &:hover, &:active, &:focus {
+    color: black;
+  }
+}
+
 button {
   all: unset;
   cursor: pointer;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
