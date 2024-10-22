@@ -149,6 +149,10 @@ const linksPublic: LinkInfo[] = [
     &-enter-from {
       transform: translateY(-2rem);
       opacity: 0;
+
+      @media (max-width: $screen-md) {
+        transform: translateX(2rem);
+      }
     }
 
     &-enter-active {
