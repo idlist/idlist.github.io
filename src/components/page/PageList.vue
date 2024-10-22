@@ -9,6 +9,10 @@ import type { PageNavigatorItem } from './types'
 const { height } = useWindowSize()
 const { y } = useWindowScroll()
 
+const props = defineProps<{
+  magnetScroll?: boolean
+}>()
+
 const slots = defineSlots<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default(): any[]
@@ -49,7 +53,7 @@ watch(() => slots.default(), () => {
 })
 
 let magnetScrollTimeout: ReturnType<typeof setTimeout> | null = null
-let magnetScrollAnimation: ReturnType<typeof animate> | null = null
+let scrollAnimation: ReturnType<typeof animate> | null = null
 
 const cancelMagnetScroll = () => {
   if (magnetScrollTimeout) {
@@ -115,7 +119,7 @@ const updateNavigatorStatus = (windowHeight: number) => {
 
   cancelMagnetScroll()
 
-  if (insidePage) {
+  if (insidePage || !props.magnetScroll) {
     return
   }
 
@@ -130,8 +134,8 @@ watch([height, y], debounce(([wh, _]) => updateNavigatorStatus(wh), 100), { imme
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   cancelMagnetScroll()
 
-  if (magnetScrollAnimation) {
-    magnetScrollAnimation.stop()
+  if (scrollAnimation) {
+    scrollAnimation.stop()
   }
 
   const page = pagesRef[index].value
@@ -146,7 +150,7 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   const from = window.scrollY
   const duration = Math.max(Math.abs(from - to) / height.value * 500, 250)
 
-  magnetScrollAnimation = animate({
+  scrollAnimation = animate({
     from,
     to,
     duration,

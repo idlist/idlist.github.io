@@ -5,6 +5,12 @@ const zh: LocaleSchema = {
   'hello-world': '你好，世界！',
   'socials': {
     'email': '邮箱',
+    'blog': '博客',
+    'twitter': 'Twitter / X',
+    'bluesky': 'Bluesky',
+    'discord': 'Discord',
+    'github': 'GitHub',
+    'soundcloud': 'SoundCloud',
   },
 }
 

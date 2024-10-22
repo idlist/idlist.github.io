@@ -40,15 +40,19 @@ defineProps<LinkItemType>()
   &__type {
     display: flex;
     align-items: center;
-    column-gap: 0.125rem;
+    column-gap: 0.25rem;
 
-    padding: 0.375rem 0.5rem 0.375rem 0.75rem;
+    padding: 0.375rem 0.5rem;
     border-radius: 1rem 0.5rem 0.5rem 1rem;
 
     font-size: 0.875rem;
     color: white;
     background-color: hsl(0, 0%, 10%);
 
+    img {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 }
 </style>

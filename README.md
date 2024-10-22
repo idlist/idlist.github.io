@@ -1,3 +1,3 @@
 # idlist.github.io
 
-Why this guy like to rehaul his personal page?
+Why does this guy like to rehaul his personal page?
