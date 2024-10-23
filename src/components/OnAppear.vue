@@ -45,8 +45,6 @@ onMounted(() => {
 })
 
 const cleanUp = () => {
-  console.log('4', el.value?.classList)
-
   el.value?.classList.remove(classEnterFrom.value, classEnterActive.value)
   el.value?.removeEventListener('transitionend', cleanUp)
   el.value?.removeEventListener('transitioncancel', cleanUp)

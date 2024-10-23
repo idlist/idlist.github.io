@@ -86,10 +86,10 @@ const linksPublic: LinkInfo[] = [
         <OnAppear name="logo-show">
           <img class="logo-idlist" :src="Idlist" alt="Logo of i'DLisT" />
         </OnAppear>
-        <OnAppear name="logo-show" :delay="200">
+        <OnAppear name="logo-show" :delay="100">
           <img class="symbol-at" :src="At" alt="at" />
         </OnAppear>
-        <OnAppear name="logo-show" :delay="400">
+        <OnAppear name="logo-show" :delay="200">
           <img class="logo-sv" :src="SphericalVacuum" alt="Logo of Spherical Vacuum" />
         </OnAppear>
       </div>
@@ -147,16 +147,16 @@ const linksPublic: LinkInfo[] = [
 
   .logo-show {
     &-enter-from {
-      transform: translateY(-2rem);
+      transform: translateY(-1rem);
       opacity: 0;
 
       @media (max-width: $screen-md) {
-        transform: translateX(2rem);
+        transform: translateX(1rem);
       }
     }
 
     &-enter-active {
-      transition: all 0.5s ease;
+      transition: all 1s ease;
     }
   }
 

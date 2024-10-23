@@ -24,7 +24,7 @@ const yOffset = -80
 const r = Math.random
 const x = (i: number) => xOffset + i * h
 const y = (i: number, j: number) => yOffset + j * w + (i % 2 == 0 ? 0 : w / 2)
-const opacity = (i: number, j: number) => (l(c) - i + 1) * 0.01 + r() * (l(c[i]) - j + 1) * 0.01
+const opacity = (i: number, j: number) => (l(c) - i + 1) * 0.01 + r() * (l(c[i]) - j + 1) * 0.015
 </script>
 
 <template>
@@ -47,7 +47,7 @@ const opacity = (i: number, j: number) => (l(c) - i + 1) * 0.01 + r() * (l(c[i])
 <style lang="scss">
 .bg-dynamic {
   z-index: -1;
-  background: hsl(0, 0%, 98%);
-  background: linear-gradient(10deg, hsl(0, 0%, 90%) 0%, hsl(0, 0%, 98%) 100%)
+  background: hsla(0, 0%, 0%, 0.02);
+  background: linear-gradient(10deg, hsla(0, 0%, 0%, 0.05) 0%, hsla(0, 0%, 0%, 0.02) 100%)
 }
 </style>
