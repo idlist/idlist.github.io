@@ -2,7 +2,7 @@
 import { defineComponent, h, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
-import debounce from 'lodash-es/debounce'
+import { debounce } from 'radash'
 import { animate, easeInOut } from 'popmotion'
 import type { PageNavigatorItem } from './types'
 
@@ -129,7 +129,7 @@ const updateNavigatorStatus = (windowHeight: number) => {
   }, 1000)
 }
 
-watch([height, y], debounce(([wh, _]) => updateNavigatorStatus(wh), 100), { immediate: true })
+watch([height, y], debounce({ delay: 100 }, ([wh, _]) => updateNavigatorStatus(wh)), { immediate: true })
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
   cancelMagnetScroll()

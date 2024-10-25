@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, useTemplateRef, watch } from 'vue'
-import debounce from 'lodash-es/debounce'
+import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
+import { debounce } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { createDelay, nextFrame } from '@/utils'
 
@@ -20,8 +20,10 @@ const delay = computed(() => createDelay(props.delay ?? 0))
 
 const show = ref(false)
 
+let unwatchShowCondition: WatchHandle
+
 onMounted(() => {
-  watch([wh, y], debounce(([wh, _]) => {
+  unwatchShowCondition = watch([wh, y], debounce({ delay: 100 }, ([wh, _]) => {
     if (!el.value) {
       return
     }
@@ -41,7 +43,11 @@ onMounted(() => {
     }
 
     show.value = next
-  }, 100), { immediate: true })
+  }), { immediate: true })
+})
+
+onUnmounted(() => {
+  unwatchShowCondition()
 })
 
 const cleanUp = () => {

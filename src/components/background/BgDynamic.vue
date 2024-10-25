@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import range from 'lodash-es/range'
+import { range } from '@/utils'
 import BgPiece from './BgPiece.vue'
 
 const c: number[][] = [

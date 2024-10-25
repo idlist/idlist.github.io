@@ -6,8 +6,8 @@ import { range } from '@/utils'
 const props = defineProps<{
   width?: number
   height?: number
-  color: string
   baseHeight: number
+  color: string
   duration: number
 }>()
 
