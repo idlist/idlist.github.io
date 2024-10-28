@@ -2,7 +2,7 @@
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
 import { debounce } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
-import { createDelay, nextFrame } from '@/utils'
+import { createDelay, createFrames } from '@/utils'
 
 const { height: wh } = useWindowSize()
 const { y } = useWindowScroll()
@@ -67,15 +67,14 @@ const showElement = async () => {
   el.value.classList.remove('opacity-0')
   el.value.classList.add(classEnterFrom.value)
 
-  await nextFrame(() => {
-    el.value?.classList.add(classEnterActive.value)
-  })
-  await nextFrame(() => {
-    el.value?.classList.remove(classEnterFrom.value)
+  const frames = createFrames()
+  await frames.next()
+  el.value?.classList.add(classEnterActive.value)
 
-    el.value?.addEventListener('transitionend', cleanUp)
-    el.value?.addEventListener('transitioncancel', cleanUp)
-  })
+  await frames.next()
+  el.value?.classList.remove(classEnterFrom.value)
+  el.value?.addEventListener('transitionend', cleanUp)
+  el.value?.addEventListener('transitioncancel', cleanUp)
 }
 
 const hideElement = () => {

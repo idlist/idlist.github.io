@@ -123,7 +123,7 @@ const langs: Lang[] = [
 
   button {
     font-size: 0.875rem;
-    padding: 0.375rem 0.25rem 0.375rem 0.75rem;
+    padding: 0.5rem 0.375rem 0.5rem 0.75rem;
     border-radius: 0.25rem;
 
     display: flex;
