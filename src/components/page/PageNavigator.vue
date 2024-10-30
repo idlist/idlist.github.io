@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import PageMorphDot from './PageMorphDot.vue'
 import type { PageNavigatorItem } from './types'
-import { createArray } from '@/utils'
+import { createArray } from '@rewl/kit'
 
 const props = defineProps<{
   status: PageNavigatorItem[]
@@ -12,7 +12,7 @@ const emit = defineEmits<{
   (e: 'jumpTo', index: number): void
 }>()
 
-const hover = ref<boolean[]>(createArray<boolean>(props.status.length).fill(false))
+const hover = ref<boolean[]>(createArray(props.status.length, false))
 </script>
 
 <template>

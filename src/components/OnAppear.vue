@@ -2,7 +2,7 @@
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
 import { debounce } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
-import { createDelay, createFrames } from '@/utils'
+import { createDelay, createFrames } from '@rewl/kit'
 
 const { height: wh } = useWindowSize()
 const { y } = useWindowScroll()
@@ -67,7 +67,7 @@ const showElement = async () => {
   el.value.classList.remove('opacity-0')
   el.value.classList.add(classEnterFrom.value)
 
-  const frames = createFrames()
+  const frames = await createFrames()
   await frames.next()
   el.value?.classList.add(classEnterActive.value)
 

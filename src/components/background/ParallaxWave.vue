@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
-import { range } from '@/utils'
+import { range } from '@rewl/kit'
 
 const props = defineProps<{
   width?: number

@@ -52,13 +52,13 @@ watch(() => slots.default(), () => {
   navigatorStatus.value = setupNavigatorStatus()
 })
 
-let magnetScrollTimeout: ReturnType<typeof setTimeout> | null = null
-let scrollAnimation: ReturnType<typeof animate> | null = null
+let magnetScrollTimeout: ReturnType<typeof setTimeout> | undefined
+let scrollAnimation: ReturnType<typeof animate> | undefined
 
 const cancelMagnetScroll = () => {
   if (magnetScrollTimeout) {
     clearTimeout(magnetScrollTimeout)
-    magnetScrollTimeout = null
+    magnetScrollTimeout = undefined
   }
 }
 
@@ -125,7 +125,7 @@ const updateNavigatorStatus = (windowHeight: number) => {
 
   magnetScrollTimeout = setTimeout(() => {
     jumpTo(mostIndex, scrollAlign)
-    magnetScrollTimeout = null
+    magnetScrollTimeout = undefined
   }, 1000)
 }
 

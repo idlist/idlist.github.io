@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { range } from '@/utils'
+import { range } from '@rewl/kit'
 import BgPiece from './BgPiece.vue'
 
 const c: number[][] = [
