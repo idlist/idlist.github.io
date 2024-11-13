@@ -84,15 +84,37 @@ const linksPublic: LinkInfo[] = [
     <div class="static page-home">
       <div class="logo">
         <OnAppear name="logo-show">
-          <img class="logo-idlist" :src="Idlist" alt="Logo of i'DLisT" />
+          <img class="logo-idlist" :src="Idlist" alt="i'DLisT" />
         </OnAppear>
         <OnAppear name="logo-show" :delay="100">
           <img class="symbol-at" :src="At" alt="at" />
         </OnAppear>
         <OnAppear name="logo-show" :delay="200">
-          <img class="logo-sv" :src="SphericalVacuum" alt="Logo of Spherical Vacuum" />
+          <img class="logo-sv" :src="SphericalVacuum" alt="Spherical Vacuum" />
         </OnAppear>
       </div>
+
+      <OnAppear name="intro" :delay="400">
+        <div class="intro">
+          <span class="text-backend">
+            {{ t('intro.code') }}{{ t('intro.separator') }}
+          </span>
+          <span class="text-design">
+            {{ t('intro.design') }}{{ t('intro.separator') }}
+          </span>
+          <span class="text-art">
+            {{ t('intro.art') }}{{ t('intro.separator') }}
+          </span>
+          <span class="text-compose">
+            {{ t('intro.compose') }}
+          </span>
+          <span class="text-idealist">
+            {{ t('intro.idealist') }}
+          </span>
+        </div>
+      </OnAppear>
+
+      <div class="gap"></div>
 
       <div class="links">
         <LinkItem v-for="item of linksPersonal"
@@ -103,7 +125,7 @@ const linksPublic: LinkInfo[] = [
         </LinkItem>
       </div>
 
-      <div class="links-gap"></div>
+      <div class="gap"></div>
 
       <div class="links">
         <LinkItem v-for="item of linksPublic"
@@ -118,7 +140,7 @@ const linksPublic: LinkInfo[] = [
 </template>
 
 <style lang="scss">
-@use '@/vars.scss' as *;
+@use '@/scss.scss' as *;
 
 .page-home {
   position: absolute;
@@ -156,7 +178,7 @@ const linksPublic: LinkInfo[] = [
     }
 
     &-enter-active {
-      transition: all 1s ease;
+      transition: all 800ms ease;
     }
   }
 
@@ -181,6 +203,21 @@ const linksPublic: LinkInfo[] = [
     }
   }
 
+  .intro {
+    background-color: hsla(0, 0%, 100%, 50%);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+
+    &-enter-from {
+      transform: translateX(1rem);
+      opacity: 0;
+    }
+
+    &-enter-active {
+      transition: all 600ms ease;
+    }
+  }
+
   .links {
     display: flex;
     flex-wrap: wrap;
@@ -188,7 +225,7 @@ const linksPublic: LinkInfo[] = [
     row-gap: 0.25rem;
   }
 
-  .links-gap {
+  .gap {
     margin-top: 0.75rem;
   }
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { defineComponent, h, ref, type Ref, watch } from 'vue'
+import { computed, defineComponent, h, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
 import { debounce } from 'radash'
@@ -10,13 +10,16 @@ const { height } = useWindowSize()
 const { y } = useWindowScroll()
 
 const props = defineProps<{
-  magnetScroll?: boolean
+  snapScroll?: boolean
+  snapDelay?: number
 }>()
 
 const slots = defineSlots<{
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   default(): any[]
 }>()
+
+const delay = computed(() => props.snapDelay ?? 1000)
 
 type PagesRefMap = Record<number, Ref<HTMLDivElement>>
 const pagesRef: PagesRefMap = {}
@@ -119,14 +122,14 @@ const updateNavigatorStatus = (windowHeight: number) => {
 
   cancelMagnetScroll()
 
-  if (insidePage || !props.magnetScroll) {
+  if (insidePage || !props.snapScroll) {
     return
   }
 
   magnetScrollTimeout = setTimeout(() => {
     jumpTo(mostIndex, scrollAlign)
     magnetScrollTimeout = undefined
-  }, 1000)
+  }, delay.value)
 }
 
 watch([height, y], debounce({ delay: 100 }, ([wh, _]) => updateNavigatorStatus(wh)), { immediate: true })
@@ -148,7 +151,7 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
     to = toMax
   }
   const from = window.scrollY
-  const duration = Math.max(Math.abs(from - to) / height.value * 500, 250)
+  const duration = Math.max(Math.abs(from - to) / height.value * 1000, 500)
 
   scrollAnimation = animate({
     from,

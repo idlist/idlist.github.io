@@ -1,8 +1,9 @@
 import { fileURLToPath, URL } from 'node:url'
-import autoprefixer from 'autoprefixer'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import autoprefixer from 'autoprefixer'
+
+const __dirname = (path: string) => fileURLToPath(new URL(path, import.meta.url))
 
 const manualChunks = (id: string) => {
   if (id.includes('node_modules')) {
@@ -17,7 +18,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@': __dirname('./src'),
     },
   },
   css: {

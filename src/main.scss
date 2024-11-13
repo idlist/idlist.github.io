@@ -1,6 +1,4 @@
-@use 'normalize.css';
-
-// Fonts
+/* Fonts */
 
 @font-face {
   font-family: 'Open Sans';
@@ -33,7 +31,42 @@
   font-weight: 400;
 }
 
-// Global settings
+/* CSS Variables */
+
+:root {
+  --color-frontend: #3ba158;
+  --color-backend: #1684de;
+  --color-art: #f3522a;
+  --color-design: #a531e9;
+  --color-compose: #df7803;
+  --color-idealist: #666666;
+}
+
+.text-frontend {
+  color: var(--color-frontend);
+}
+
+.text-backend {
+  color: var(--color-backend);
+}
+
+.text-art {
+  color: var(--color-art);
+}
+
+.text-design {
+  color: var(--color-design);
+}
+
+.text-compose {
+  color: var(--color-compose);
+}
+
+.text-idealist {
+  color: var(--color-idealist);
+}
+
+/* Global settings */
 
 * {
   font-family: 'Open Sans', sans-serif;
@@ -43,7 +76,11 @@
 a {
   text-decoration: none;
 
-  &, &:visited, &:hover, &:active, &:focus {
+  &,
+  &:visited,
+  &:hover,
+  &:active,
+  &:focus {
     color: black;
   }
 }

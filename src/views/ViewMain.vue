@@ -8,7 +8,7 @@ import PageAbility from './view-main/PageAbility.vue'
 </script>
 
 <template>
-  <PageList>
+  <PageList snap-scroll>
     <PageContent>
       <PageHome />
     </PageContent>
