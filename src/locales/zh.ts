@@ -20,6 +20,12 @@ const zh: LocaleSchema = {
     'github': 'GitHub',
     'soundcloud': 'SoundCloud',
   },
+  'ability': {
+    'mastery': '技能一览',
+    'masteries': {
+      'language': '语言',
+    },
+  },
 }
 
 export default zh

@@ -7,15 +7,13 @@ const cssColor = `hsla(${props.hue ?? 10}, 100%, 50%, 0.5)`
 </script>
 
 <template>
-  <div class="static bg-filter"></div>
+  <div class="static no-events bg-filter">
+    <slot></slot>
+  </div>
 </template>
 
 <style lang="scss">
 .bg-filter {
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-
   mix-blend-mode: color;
   background-color: v-bind('cssColor');
 }

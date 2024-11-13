@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 /* Fonts */
 
 @font-face {
@@ -34,8 +36,9 @@
 /* CSS Variables */
 
 :root {
+  --color-language: #0ad8df;
   --color-frontend: #3ba158;
-  --color-backend: #1684de;
+  --color-backend: #0c7edb;
   --color-art: #f3522a;
   --color-design: #a531e9;
   --color-compose: #df7803;
@@ -71,6 +74,17 @@
 * {
   font-family: 'Open Sans', sans-serif;
   box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
 }
 
 a {

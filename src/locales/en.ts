@@ -18,6 +18,12 @@ const en = {
     'github': 'GitHub',
     'soundcloud': 'SoundCloud',
   },
+  'ability': {
+    'mastery': 'MASTERY',
+    'masteries': {
+      'language': 'Languages',
+    },
+  },
 }
 
 export default en

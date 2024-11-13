@@ -1,7 +1,12 @@
 <script setup lang="ts">
-import type { LinkItemType } from './LinkItemType'
+export interface LinkItemProps {
+  icon: string
+  iconAlt?: string
+  type: string
+  link: string
+}
 
-defineProps<LinkItemType>()
+defineProps<LinkItemProps>()
 </script>
 
 <template>

@@ -11,6 +11,10 @@
   -webkit-user-drag: none;
 }
 
+.no-events {
+  pointer-events: none;
+}
+
 .no-click-fx {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

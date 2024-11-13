@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import FullPage from '@/components/background/FullPage.vue'
 import { useI18n } from 'vue-i18n'
-import LinkItem from './LinkItem.vue'
-import type { LinkItemType } from './LinkItemType'
+import LinkItem, { type LinkItemProps } from './LinkItem.vue'
 import OnAppear from '@/components/OnAppear.vue'
 
 import Idlist from '@/assets/logo/idlist.svg'
@@ -19,7 +18,7 @@ import SoundCloud from '@/assets/svgrepo/soundcloud.svg'
 
 const { t } = useI18n()
 
-interface LinkInfo extends LinkItemType {
+interface LinkInfo extends LinkItemProps {
   name: string
 }
 
@@ -82,7 +81,7 @@ const linksPublic: LinkInfo[] = [
 <template>
   <FullPage>
     <div class="static page-home">
-      <div class="logo">
+      <h1 class="logo">
         <OnAppear name="logo-show">
           <img class="logo-idlist" :src="Idlist" alt="i'DLisT" />
         </OnAppear>
@@ -92,7 +91,7 @@ const linksPublic: LinkInfo[] = [
         <OnAppear name="logo-show" :delay="200">
           <img class="logo-sv" :src="SphericalVacuum" alt="Spherical Vacuum" />
         </OnAppear>
-      </div>
+      </h1>
 
       <OnAppear name="intro" :delay="400">
         <div class="intro">
