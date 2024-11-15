@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
-import { debounce } from 'radash'
+import { throttle } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { createDelay, createFrames } from '@rewl/kit'
 
 const { height: wh } = useWindowSize()
 const { y } = useWindowScroll()
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   name?: string
   delay?: number
-}>()
+  once?: boolean
+}>(), {
+  name: 'v',
+  delay: 0,
+})
 
 const el = useTemplateRef('el')
-const name = computed(() => props.name ?? 'v')
-const classEnterFrom = computed(() => `${name.value}-enter-from`)
-const classEnterActive = computed(() => `${name.value}-enter-active`)
+const classEnterFrom = computed(() => `${props.name}-enter-from`)
+const classEnterActive = computed(() => `${props.name}-enter-active`)
 const delay = computed(() => createDelay(props.delay ?? 0))
 
 const show = ref(false)
@@ -23,10 +26,8 @@ const show = ref(false)
 let unwatchShowCondition: WatchHandle
 
 onMounted(() => {
-  unwatchShowCondition = watch([wh, y], debounce({ delay: 100 }, ([wh, _]) => {
-    if (!el.value) {
-      return
-    }
+  unwatchShowCondition = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
+    if (!el.value) return
 
     const { top, bottom } = el.value.getBoundingClientRect()
 
@@ -37,13 +38,12 @@ onMounted(() => {
 
     if (!show.value && inWindow) {
       next = true
+      if (props.once) unwatchShowCondition()
     }
-    if (show.value && outOfWindow) {
-      next = false
-    }
+    if (show.value && outOfWindow) next = false
 
     show.value = next
-  }), { immediate: true })
+  }))
 })
 
 onUnmounted(() => {

@@ -22,4 +22,4 @@ krita: https://www.svgrepo.com/svg/341976/krita
 affinity_designer: https://www.svgrepo.com/svg/305670/affinity-designer
 star: https://www.svgrepo.com/svg/525539/star
 electron: https://www.svgrepo.com/svg/327355/logo-electron
-
+heart: https://www.svgrepo.com/svg/525363/heart-angle

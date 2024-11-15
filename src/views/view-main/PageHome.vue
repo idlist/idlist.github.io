@@ -204,8 +204,9 @@ const linksPublic: LinkInfo[] = [
 
   .intro {
     background-color: hsla(0, 0%, 100%, 50%);
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
     border-radius: 0.5rem;
+    line-height: 1.5rem;
 
     &-enter-from {
       transform: translateX(1rem);

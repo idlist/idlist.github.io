@@ -27,8 +27,8 @@ const zh: LocaleSchema = {
       'pl': '编程语言',
       'web': '网页技术',
       'desktop': '桌面应用',
-      'gamedev': '游戏开发',
-      'art': '绘画 & 设计',
+      'gamedev': '游戏设计',
+      'art': '绘画 & 平面',
       'compose': '编曲',
     },
     'skills': {
@@ -36,6 +36,9 @@ const zh: LocaleSchema = {
       'english': '英文',
       'japanese': '日文',
     },
+  },
+  'footer': {
+    'last-update': '最近更新：',
   },
 }
 

@@ -35,6 +35,9 @@ const en = {
       'japanese': 'Japanese',
     },
   },
+  'footer': {
+    'last-update': 'Last Update: ',
+  },
 }
 
 export default en

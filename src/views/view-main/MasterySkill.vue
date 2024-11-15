@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 import icon_star from '@/assets/svgrepo/star.svg'
+import icon_heart from '@/assets/svgrepo/heart.svg'
 
 export interface MasterySkillProps {
   icon?: string
@@ -11,6 +12,7 @@ export interface MasterySkillProps {
   desc?: string
   descPath?: string
   star?: boolean
+  fav?: boolean
 }
 
 const props = defineProps<MasterySkillProps>()
@@ -36,12 +38,13 @@ const padEnd = computed(() => !props.desc && !props.descPath)
       <div v-if="padStart"></div>
 
       <div v-if="icon" class="icon">
-        <img :src="icon" :alt="`icon of ${name}`" />
+        <img class="icon-md" :src="icon" :alt="`icon of ${name}`" />
       </div>
 
       <slot></slot>
 
-      <img v-if="star" class="star" :src="icon_star" alt="good at" />
+      <img v-if="star" class="icon-sm" :src="icon_star" alt="good at" />
+      <img v-if="fav" class="icon-sm" :src="icon_heart" alt="like" />
 
       <div v-if="descPath" class="description">{{ t(descPath) }}</div>
       <div v-if="desc" class="description">{{ desc }}</div>
@@ -52,19 +55,24 @@ const padEnd = computed(() => !props.desc && !props.descPath)
 </template>
 
 <style lang="scss">
+@use 'sass:math';
+
+$size: 1.75rem;
+$radius: math.div($size, 2);
+
 .mastery-skill {
   padding: 0.25rem;
 
   border: 1px solid #fff;
-  border-radius: 1.5rem;
+  border-radius: $size;
 
   .inner {
-    min-height: 1.75rem;
-    border-radius: 1rem;
+    min-height: $size;
+    border-radius: $radius;
 
     display: flex;
     align-items: center;
-    column-gap: 0.375rem;
+    column-gap: 0.25rem;
 
     color: #fff;
 
@@ -78,19 +86,9 @@ const padEnd = computed(() => !props.desc && !props.descPath)
     align-items: center;
     justify-content: center;
     background-color: hsla(0, 0%, 100%, 0.9);
-    width: 1.75rem;
-    height: 1.75rem;
-    border-radius: 0.875rem;
-
-    img {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
-
-  .star {
-    width: 1rem;
-    height: 1rem;
+    width: $size;
+    height: $size;
+    border-radius: $radius;
   }
 
   .description {
@@ -98,9 +96,9 @@ const padEnd = computed(() => !props.desc && !props.descPath)
     align-items: center;
 
     font-size: 0.875em;
-    height: 1.75rem;
-    border-radius: 0.25rem 0.875rem 0.875rem 0.25rem;
-    padding: 0 0.375rem 0 0.375rem;
+    height: $size;
+    border-radius: 0.25rem $radius $radius 0.25rem;
+    padding: 0 0.375rem 0 0.25rem;
 
     color: #000;
     background-color: hsla(0, 0%, 100%, 0.9);

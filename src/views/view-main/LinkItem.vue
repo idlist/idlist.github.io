@@ -13,7 +13,7 @@ defineProps<LinkItemProps>()
   <a class="card link-item" :href="link" target="_blank" noopener noreferer>
     <div class="hover-fx fx-quick-hover">
       <div class="type">
-        <img :src="icon" :alt="iconAlt" />
+        <img class="icon-md" :src="icon" :alt="iconAlt" />
         <div>{{ type }}</div>
       </div>
       <slot></slot>
@@ -53,11 +53,6 @@ defineProps<LinkItemProps>()
     font-size: 0.875rem;
     color: #fff;
     background-color: hsl(0, 0%, 10%);
-
-    img {
-      width: 1rem;
-      height: 1rem;
-    }
   }
 }
 </style>

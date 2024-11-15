@@ -27,6 +27,7 @@ const cssMinHeight = props.minHeight ?? '100vh'
 .full-page {
   min-width: 100%;
   min-height: v-bind('cssMinHeight');
+  position: relative;
 
   .background {
     min-width: 100%;

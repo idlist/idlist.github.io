@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, defineComponent, h, ref, type Ref, watch } from 'vue'
+import { computed, defineComponent, h, onMounted, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import PageNavigator from './PageNavigator.vue'
-import { debounce } from 'radash'
+import { throttle } from 'radash'
 import { animate, easeInOut } from 'popmotion'
 import type { PageNavigatorItem } from './types'
 
@@ -51,17 +51,19 @@ const setupNavigatorStatus = (): PageNavigatorItem[] => {
 
 const navigatorStatus = ref(setupNavigatorStatus())
 
-watch(() => slots.default(), () => {
-  navigatorStatus.value = setupNavigatorStatus()
+onMounted(() => {
+  watch(() => slots.default(), () => {
+    navigatorStatus.value = setupNavigatorStatus()
+  }, { immediate: true })
 })
 
-let magnetScrollTimeout: ReturnType<typeof setTimeout> | undefined
+let snapScrollTimeout: ReturnType<typeof setTimeout> | undefined
 let scrollAnimation: ReturnType<typeof animate> | undefined
 
-const cancelMagnetScroll = () => {
-  if (magnetScrollTimeout) {
-    clearTimeout(magnetScrollTimeout)
-    magnetScrollTimeout = undefined
+const cancelSnapScroll = () => {
+  if (snapScrollTimeout) {
+    clearTimeout(snapScrollTimeout)
+    snapScrollTimeout = undefined
   }
 }
 
@@ -120,22 +122,24 @@ const updateNavigatorStatus = (windowHeight: number) => {
     navigatorStatus.value[i].progress = percent
   }
 
-  cancelMagnetScroll()
+  cancelSnapScroll()
 
   if (insidePage || !props.snapScroll) {
     return
   }
 
-  magnetScrollTimeout = setTimeout(() => {
+  snapScrollTimeout = setTimeout(() => {
     jumpTo(mostIndex, scrollAlign)
-    magnetScrollTimeout = undefined
+    snapScrollTimeout = undefined
   }, delay.value)
 }
 
-watch([height, y], debounce({ delay: 100 }, ([wh, _]) => updateNavigatorStatus(wh)), { immediate: true })
+onMounted(() => {
+  watch([height, y], throttle({ interval: 100 }, ([wh, _]) => updateNavigatorStatus(wh)), { immediate: true })
+})
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
-  cancelMagnetScroll()
+  cancelSnapScroll()
 
   if (scrollAnimation) {
     scrollAnimation.stop()
@@ -151,7 +155,7 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
     to = toMax
   }
   const from = window.scrollY
-  const duration = Math.max(Math.abs(from - to) / height.value * 1000, 500)
+  const duration = Math.max(Math.abs(from - to) / height.value * 500, 250)
 
   scrollAnimation = animate({
     from,

@@ -4,6 +4,7 @@ import PageContent from '@/components/page/PageContent.vue'
 import PageDivider from '@/components/page/PageDivider.vue'
 import PageHome from './view-main/PageHome.vue'
 import PageAbility from './view-main/PageAbility.vue'
+import PageFooter from './view-main/PageFooter.vue'
 // import FullPage from '@/components/background/FullPage.vue'
 </script>
 
@@ -17,6 +18,12 @@ import PageAbility from './view-main/PageAbility.vue'
 
     <PageContent>
       <PageAbility />
+    </PageContent>
+
+    <PageDivider />
+
+    <PageContent>
+      <PageFooter />
     </PageContent>
   </PageList>
 </template>

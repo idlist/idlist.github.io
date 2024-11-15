@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PieceSvg from '@/assets/bg/bg_piece.svg'
+import PieceSvg from '@/assets/byme/bg_piece.svg'
 
 const props = defineProps<{
   opacity?: number
