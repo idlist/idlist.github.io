@@ -1,5 +1,5 @@
 <template>
-  <div class="static no-events bg-invert">
+  <div class="static bg-invert">
     <slot></slot>
   </div>
 </template>

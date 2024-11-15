@@ -22,6 +22,17 @@ const en = {
     'mastery': 'MASTERY',
     'masteries': {
       'language': 'Languages',
+      'pl': 'Code',
+      'web': 'Web Stack',
+      'desktop': 'App',
+      'gamedev': 'Gamedev',
+      'art': 'Art & Design',
+      'compose': 'Desktop Music',
+    },
+    'skills': {
+      'chinese': 'Chinese',
+      'english': 'English',
+      'japanese': 'Japanese',
     },
   },
 }

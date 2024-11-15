@@ -11,8 +11,8 @@ defineProps<LinkItemProps>()
 
 <template>
   <a class="card link-item" :href="link" target="_blank" noopener noreferer>
-    <div class="link-item__hover-fx fx-quick-hover">
-      <div class="link-item__type">
+    <div class="hover-fx fx-quick-hover">
+      <div class="type">
         <img :src="icon" :alt="iconAlt" />
         <div>{{ type }}</div>
       </div>
@@ -30,7 +30,7 @@ defineProps<LinkItemProps>()
 
   padding: 0.25rem;
 
-  &__hover-fx {
+  .hover-fx {
     border-radius: 10rem;
     display: flex;
     align-items: center;
@@ -42,7 +42,7 @@ defineProps<LinkItemProps>()
     }
   }
 
-  &__type {
+  .type {
     display: flex;
     align-items: center;
     column-gap: 0.25rem;
@@ -51,7 +51,7 @@ defineProps<LinkItemProps>()
     border-radius: 1rem 0.5rem 0.5rem 1rem;
 
     font-size: 0.875rem;
-    color: white;
+    color: #fff;
     background-color: hsl(0, 0%, 10%);
 
     img {

@@ -36,21 +36,22 @@
 /* CSS Variables */
 
 :root {
-  --color-language: #0ad8df;
-  --color-frontend: #3ba158;
-  --color-backend: #0c7edb;
-  --color-art: #f3522a;
-  --color-design: #a531e9;
-  --color-compose: #df7803;
+  --color-language: #07eecf;
+  --color-pl: #1e99fd;
+  --color-frontend: #0ddb48;
+  --color-desktop: #7e4bf7;
+  --color-art: #f35b35;
+  --color-design: #ce4bf7;
+  --color-compose: #f5982d;
   --color-idealist: #666666;
+}
+
+.text-pl {
+  color: var(--color-pl);
 }
 
 .text-frontend {
   color: var(--color-frontend);
-}
-
-.text-backend {
-  color: var(--color-backend);
 }
 
 .text-art {
@@ -95,7 +96,7 @@ a {
   &:hover,
   &:active,
   &:focus {
-    color: black;
+    color: #000;
   }
 }
 

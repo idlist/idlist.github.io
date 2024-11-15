@@ -7,7 +7,7 @@ const cssColor = `hsla(${props.hue ?? 10}, 100%, 50%, 0.5)`
 </script>
 
 <template>
-  <div class="static no-events bg-filter">
+  <div class="static bg-filter">
     <slot></slot>
   </div>
 </template>

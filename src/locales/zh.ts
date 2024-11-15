@@ -24,6 +24,17 @@ const zh: LocaleSchema = {
     'mastery': '技能一览',
     'masteries': {
       'language': '语言',
+      'pl': '编程语言',
+      'web': '网页技术',
+      'desktop': '桌面应用',
+      'gamedev': '游戏开发',
+      'art': '绘画 & 设计',
+      'compose': '编曲',
+    },
+    'skills': {
+      'chinese': '中文',
+      'english': '英文',
+      'japanese': '日文',
     },
   },
 }

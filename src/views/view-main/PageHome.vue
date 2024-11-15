@@ -95,7 +95,7 @@ const linksPublic: LinkInfo[] = [
 
       <OnAppear name="intro" :delay="400">
         <div class="intro">
-          <span class="text-backend">
+          <span class="text-pl">
             {{ t('intro.code') }}{{ t('intro.separator') }}
           </span>
           <span class="text-design">
