@@ -1,7 +1,6 @@
 <script setup lang="ts">
 export interface LinkItemProps {
   icon: string
-  iconAlt?: string
   type: string
   link: string
 }
@@ -13,7 +12,7 @@ defineProps<LinkItemProps>()
   <a class="card link-item" :href="link" target="_blank" noopener noreferer>
     <div class="hover-fx fx-quick-hover">
       <div class="type">
-        <img class="icon-md" :src="icon" :alt="iconAlt" />
+        <img class="icon-md" :src="icon" :alt="`icon of ${type}`" />
         <div>{{ type }}</div>
       </div>
       <slot></slot>

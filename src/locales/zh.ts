@@ -38,6 +38,7 @@ const zh: LocaleSchema = {
     },
   },
   'footer': {
+    'eof': '这是最后一页……至少现在是的。',
     'last-update': '最近更新：',
   },
 }

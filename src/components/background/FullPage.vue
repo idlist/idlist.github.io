@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { type Component } from 'vue'
 
-const props = defineProps<{
+withDefaults(defineProps<{
   minHeight?: string
   background?: Component
-}>()
+}>(), {
+  minHeight: '100vh',
+  background: undefined,
+})
 
 defineOptions({
   inheritAttrs: false,
 })
-
-const cssMinHeight = props.minHeight ?? '100vh'
 </script>
 
 <template>
@@ -26,12 +27,13 @@ const cssMinHeight = props.minHeight ?? '100vh'
 <style lang="scss" scoped>
 .full-page {
   min-width: 100%;
-  min-height: v-bind('cssMinHeight');
+  min-height: v-bind('minHeight');
   position: relative;
 
   .background {
     min-width: 100%;
-    min-height: v-bind('cssMinHeight');
+    min-height: v-bind('minHeight');
+    position: relative;
   }
 }
 </style>

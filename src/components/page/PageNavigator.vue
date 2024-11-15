@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import PageMorphDot from './PageMorphDot.vue'
-import type { PageNavigatorItem } from './types'
 import { createArray } from '@rewl/kit'
+
+interface PageNavigatorDot {
+  type: 'dot'
+  progress: number
+}
+
+interface PageNavigatorDivider {
+  type: 'divider'
+}
+
+export type PageNavigatorItem = PageNavigatorDot | PageNavigatorDivider
 
 const props = defineProps<{
   status: PageNavigatorItem[]

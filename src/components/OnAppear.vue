@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
 import { throttle } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { createDelay, createFrames } from '@rewl/kit'
@@ -23,10 +23,10 @@ const delay = computed(() => createDelay(props.delay ?? 0))
 
 const show = ref(false)
 
-let unwatchShowCondition: WatchHandle
+let stop: WatchHandle
 
 onMounted(() => {
-  unwatchShowCondition = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
+  stop = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
     if (!el.value) return
 
     const { top, bottom } = el.value.getBoundingClientRect()
@@ -38,16 +38,16 @@ onMounted(() => {
 
     if (!show.value && inWindow) {
       next = true
-      if (props.once) unwatchShowCondition()
+      if (props.once) nextTick(() => stop())
     }
     if (show.value && outOfWindow) next = false
 
     show.value = next
-  }))
+  }), { immediate: true })
 })
 
 onUnmounted(() => {
-  unwatchShowCondition()
+  stop()
 })
 
 const cleanUp = () => {

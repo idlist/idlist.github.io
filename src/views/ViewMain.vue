@@ -5,7 +5,6 @@ import PageDivider from '@/components/page/PageDivider.vue'
 import PageHome from './view-main/PageHome.vue'
 import PageAbility from './view-main/PageAbility.vue'
 import PageFooter from './view-main/PageFooter.vue'
-// import FullPage from '@/components/background/FullPage.vue'
 </script>
 
 <template>

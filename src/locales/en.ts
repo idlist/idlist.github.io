@@ -36,6 +36,7 @@ const en = {
     },
   },
   'footer': {
+    'eof': 'This is the end of the page ... for now.',
     'last-update': 'Last Update: ',
   },
 }

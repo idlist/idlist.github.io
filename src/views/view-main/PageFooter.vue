@@ -8,8 +8,11 @@ const { t } = useI18n()
 
 <template>
   <FullPage>
+    <div class="centered">
+      {{ t('footer.eof') }}
+    </div>
     <div class="bottom-line">
-      <div class="static container">
+      <div class="static sign">
         <div>i'DLisT © {{ CopyrightYears }}</div>
         <div>{{ t('footer.last-update') }}{{ LastUpdate }}</div>
       </div>
@@ -20,6 +23,16 @@ const { t } = useI18n()
 <style lang="scss">
 @use '@/scss.scss' as *;
 
+.centered {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .bottom-line {
   position: absolute;
   bottom: 4rem;
@@ -28,7 +41,7 @@ const { t } = useI18n()
   display: flex;
   justify-content: center;
 
-  .container {
+  .sign {
     display: grid;
     grid-template-columns: auto auto;
     align-items: center;

@@ -3,21 +3,22 @@ import { computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
 import { range } from '@rewl/kit'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   width?: number
   height?: number
   baseHeight: number
   color: string
   duration: number
-}>()
+}>(), {
+  width: 600,
+  height: 240,
+})
 
-const w = computed(() => props.width ?? 600)
-const h = computed(() => props.height ?? 240)
 const cssBaseHeight = computed(() => `${props.baseHeight}px`)
 const cssDuration = computed(() => `${props.duration}s`)
 
 const { width: ww } = useWindowSize()
-const n = computed(() => Math.ceil(ww.value / w.value) + 2)
+const n = computed(() => Math.ceil(ww.value / props.width) + 2)
 
 const delay = Math.random() * props.duration
 const cssDelay = computed(() => `${-delay}s`)
@@ -28,8 +29,8 @@ const cssDelay = computed(() => `${-delay}s`)
     <div class="wave">
       <svg v-for="i of range(n)"
         :key="i"
-        :width="w"
-        :height="h"
+        :width="width"
+        :height="height"
         :fill="color"
         class="wave-svg"
         viewBox="0 0 1200 240"

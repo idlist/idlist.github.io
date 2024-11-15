@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { computed, defineComponent, h, onMounted, ref, type Ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
-import PageNavigator from './PageNavigator.vue'
 import { throttle } from 'radash'
 import { animate, easeInOut } from 'popmotion'
-import type { PageNavigatorItem } from './types'
+import PageNavigator, { type PageNavigatorItem } from './PageNavigator.vue'
 
 const { height } = useWindowSize()
 const { y } = useWindowScroll()

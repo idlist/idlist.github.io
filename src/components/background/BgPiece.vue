@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import PieceSvg from '@/assets/byme/bg_piece.svg'
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
   opacity?: number
   startAt?: number
-}>()
-
-const cssOpacity = props.opacity ?? 1
+}>(), {
+  opacity: 1,
+  startAt: 1,
+})
 
 const d = 2.0
 const cssDuration = `${d}s`
-const delayTime = (props.startAt ?? 1) % 1 * d - (d)
+const delayTime = props.startAt % 1 * d - (d)
 const cssDelayTime = `${delayTime}s`
 </script>
 
@@ -22,7 +23,7 @@ const cssDelayTime = `${delayTime}s`
 
 <style lang="scss" module="bgPiece">
 .wrapper {
-  opacity: v-bind('cssOpacity');
+  opacity: v-bind('opacity');
   position: absolute;
 }
 

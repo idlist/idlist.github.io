@@ -25,14 +25,12 @@ interface LinkInfo extends LinkItemProps {
 const linksPersonal: LinkInfo[] = [
   {
     icon: Email,
-    iconAlt: 'icon of email',
     type: 'email',
     name: 'i@idl.ist',
     link: 'mailto:i@idl.ist',
   },
   {
     icon: Riw,
-    iconAlt: 'icon of blog',
     type: 'blog',
     name: 'Reinventing the Wheel',
     link: 'https://blog.idl.ist',
@@ -42,35 +40,30 @@ const linksPersonal: LinkInfo[] = [
 const linksPublic: LinkInfo[] = [
   {
     icon: X,
-    iconAlt: 'icon of twitter',
     type: 'twitter',
     name: '@i_dlist',
     link: 'https://x.com/i_dlist',
   },
   {
     icon: Bluesky,
-    iconAlt: 'icon of bluesky',
     type: 'bluesky',
     name: '@idl.ist',
     link: 'https://bsky.app/profile/idl.ist',
   },
   {
     icon: Discord,
-    iconAlt: 'icon of discord',
     type: 'discord',
     name: '@i_dlist',
     link: 'https://discord.com/',
   },
   {
     icon: GitHub,
-    iconAlt: 'icon of github',
     type: 'github',
     name: '@idlist',
     link: 'https://github.com/idlist',
   },
   {
     icon: SoundCloud,
-    iconAlt: 'icon of soundcloud',
     type: 'soundcloud',
     name: '@idlist',
     link: 'https://soundcloud.com/idlist',
