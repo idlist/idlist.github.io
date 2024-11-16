@@ -29,7 +29,7 @@ const buttonAttrs = computed<Record<string, unknown>>(() => {
 })
 
 const padStart = computed(() => !props.icon)
-const padEnd = computed(() => !props.desc && !props.descPath && !props.star && !props.fav)
+const padEnd = computed(() => !props.desc && !props.descPath)
 </script>
 
 <template>
@@ -43,8 +43,8 @@ const padEnd = computed(() => !props.desc && !props.descPath && !props.star && !
 
       <slot></slot>
 
-      <img v-if="star" class="icon-sm icon-margin" :src="icon_star" alt="good at" />
-      <img v-if="fav" class="icon-sm icon-margin" :src="icon_heart" alt="like" />
+      <img v-if="star" class="icon-sm" :src="icon_star" alt="good at" />
+      <img v-if="fav" class="icon-sm" :src="icon_heart" alt="like" />
 
       <div v-if="descPath" class="description">{{ t(descPath) }}</div>
       <div v-if="desc" class="description">{{ desc }}</div>
@@ -72,7 +72,7 @@ $radius: math.div($size, 2);
 
     display: flex;
     align-items: center;
-    column-gap: 0.375rem;
+    column-gap: 0.25rem;
 
     color: #fff;
 
@@ -102,10 +102,6 @@ $radius: math.div($size, 2);
 
     color: #000;
     background-color: hsla(0, 0%, 100%, 0.9);
-  }
-
-  .icon-margin {
-    margin-right: 0.25rem;
   }
 }
 </style>

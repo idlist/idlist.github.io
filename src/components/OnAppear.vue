@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch, type WatchHandle } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
 import { throttle } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { createDelay, createFrames } from '@rewl/kit'
@@ -10,44 +10,67 @@ const { y } = useWindowScroll()
 const props = withDefaults(defineProps<{
   name?: string
   delay?: number
+  toggleBy?: boolean
   once?: boolean
 }>(), {
   name: 'v',
   delay: 0,
+  toggleBy: undefined,
 })
 
-const el = useTemplateRef('el')
+const emit = defineEmits<{
+  (event: 'toggle', update: boolean): void
+}>()
+
+const el = useTemplateRef<HTMLElement>('el')
 const classEnterFrom = computed(() => `${props.name}-enter-from`)
 const classEnterActive = computed(() => `${props.name}-enter-active`)
 const delay = computed(() => createDelay(props.delay ?? 0))
 
-const show = ref(false)
+let show: ReturnType<typeof ref<boolean>> | ReturnType<typeof computed<boolean>>
 
-let stop: WatchHandle
+let stopDetectAppearance: ReturnType<typeof watch> | undefined
+let stopWatchShowCondition: ReturnType<typeof watch> | undefined
 
 onMounted(() => {
-  stop = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
-    if (!el.value) return
+  if (typeof props.toggleBy != 'undefined') {
+    show = computed(() => props.toggleBy!)
+  } else {
+    show = ref(false)
 
-    const { top, bottom } = el.value.getBoundingClientRect()
+    stopDetectAppearance = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
+      if (!el.value) return
 
-    const inWindow = top > 0 && bottom < wh
-    const outOfWindow = bottom < 0 || top > wh
+      const { top, bottom } = el.value.getBoundingClientRect()
 
-    let next = show.value
+      const inWindow = top > 0 && bottom < wh
+      const outOfWindow = bottom < 0 || top > wh
 
-    if (!show.value && inWindow) {
-      next = true
-      if (props.once) nextTick(() => stop())
+      let next = show.value!
+
+      if (!show.value && inWindow) {
+        next = true
+        if (props.once) nextTick(() => stopDetectAppearance?.())
+      }
+      if (show.value && outOfWindow) next = false
+
+      emit('toggle', next)
+      show.value = next
+    }), { immediate: true })
+  }
+
+  stopWatchShowCondition = watch(show, (now) => {
+    if (now) {
+      showElement()
+    } else {
+      hideElement()
     }
-    if (show.value && outOfWindow) next = false
-
-    show.value = next
-  }), { immediate: true })
+  }, { immediate: true })
 })
 
 onUnmounted(() => {
-  stop()
+  stopDetectAppearance?.()
+  stopWatchShowCondition?.()
 })
 
 const cleanUp = () => {
@@ -80,14 +103,6 @@ const showElement = async () => {
 const hideElement = () => {
   el.value?.classList.add('opacity-0')
 }
-
-watch(show, (now) => {
-  if (now) {
-    showElement()
-  } else {
-    hideElement()
-  }
-}, { immediate: true })
 </script>
 
 <template>

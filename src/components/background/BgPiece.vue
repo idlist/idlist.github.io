@@ -17,7 +17,7 @@ const cssDelayTime = `${delayTime}s`
 
 <template>
   <div :class="bgPiece.wrapper">
-    <img class="static" :class="bgPiece.blink" :src="PieceSvg" />
+    <img class="static" :class="bgPiece.blink" :src="PieceSvg" alt="background piece" />
   </div>
 </template>
 
