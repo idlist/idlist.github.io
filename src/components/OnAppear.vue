@@ -22,12 +22,43 @@ const emit = defineEmits<{
   (event: 'toggle', update: boolean): void
 }>()
 
-const el = useTemplateRef<HTMLElement>('el')
+const el = useTemplateRef('el')
 const classEnterFrom = computed(() => `${props.name}-enter-from`)
 const classEnterActive = computed(() => `${props.name}-enter-active`)
-const delay = computed(() => createDelay(props.delay ?? 0))
+const delay = createDelay(() => props.delay)
 
 let show: ReturnType<typeof ref<boolean>> | ReturnType<typeof computed<boolean>>
+
+const cleanUp = () => {
+  if (!el.value) return
+  el.value.classList.remove(classEnterFrom.value, classEnterActive.value)
+  el.value.removeEventListener('transitionend', cleanUp)
+  el.value.removeEventListener('transitioncancel', cleanUp)
+}
+
+const showElement = async () => {
+  if (!el.value) return
+
+  delay.cancel()
+  await delay.run()
+
+  el.value.classList.remove('opacity-0')
+  el.value.classList.add(classEnterFrom.value)
+
+  const frames = await createFrames()
+  await frames.next()
+  el.value.classList.add(classEnterActive.value)
+
+  await frames.next()
+  el.value.classList.remove(classEnterFrom.value)
+  el.value.addEventListener('transitionend', cleanUp)
+  el.value.addEventListener('transitioncancel', cleanUp)
+}
+
+const hideElement = () => {
+  if (!el.value) return
+  el.value.classList.add('opacity-0')
+}
 
 let stopDetectAppearance: ReturnType<typeof watch> | undefined
 let stopWatchShowCondition: ReturnType<typeof watch> | undefined
@@ -72,37 +103,6 @@ onUnmounted(() => {
   stopDetectAppearance?.()
   stopWatchShowCondition?.()
 })
-
-const cleanUp = () => {
-  el.value?.classList.remove(classEnterFrom.value, classEnterActive.value)
-  el.value?.removeEventListener('transitionend', cleanUp)
-  el.value?.removeEventListener('transitioncancel', cleanUp)
-}
-
-const showElement = async () => {
-  if (!el.value) {
-    return
-  }
-
-  delay.value.cancel()
-  await delay.value.run()
-
-  el.value.classList.remove('opacity-0')
-  el.value.classList.add(classEnterFrom.value)
-
-  const frames = await createFrames()
-  await frames.next()
-  el.value?.classList.add(classEnterActive.value)
-
-  await frames.next()
-  el.value?.classList.remove(classEnterFrom.value)
-  el.value?.addEventListener('transitionend', cleanUp)
-  el.value?.addEventListener('transitioncancel', cleanUp)
-}
-
-const hideElement = () => {
-  el.value?.classList.add('opacity-0')
-}
 </script>
 
 <template>

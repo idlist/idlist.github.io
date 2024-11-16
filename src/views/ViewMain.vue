@@ -8,7 +8,7 @@ import PageFooter from './view-main/PageFooter.vue'
 </script>
 
 <template>
-  <PageList snap-scroll>
+  <PageList snap-scroll :snap-delay="3000" :snap-duration="800">
     <PageContent>
       <PageHome />
     </PageContent>

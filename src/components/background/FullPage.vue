@@ -1,17 +1,29 @@
 <script setup lang="ts">
-import { type Component } from 'vue'
+import { computed, ref, watch, type Component } from 'vue'
+import { useWindowSize } from '@vueuse/core'
+import { throttle } from 'radash'
 
-withDefaults(defineProps<{
-  minHeight?: string
+const props = withDefaults(defineProps<{
   background?: Component
 }>(), {
-  minHeight: '100vh',
   background: undefined,
 })
 
 defineOptions({
   inheritAttrs: false,
 })
+
+const { height } = useWindowSize()
+const heightDebounced = ref(height.value)
+const cssHeightDebounced = computed(() => `${heightDebounced.value}px`)
+
+watch(height, throttle({ interval: 100 }, (h) => {
+  const percent = Math.abs(heightDebounced.value - h) / heightDebounced.value
+  if (percent > 0.2) heightDebounced.value = h
+}))
+
+const outerPosition = computed(() => props.background ? 'inherit' : 'relative')
+const innerPosition = computed(() => props.background ? 'relative': 'inherit')
 </script>
 
 <template>
@@ -24,16 +36,16 @@ defineOptions({
   </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .full-page {
   min-width: 100%;
-  min-height: v-bind('minHeight');
-  position: relative;
+  min-height: v-bind('cssHeightDebounced');
+  position: v-bind('outerPosition');
 
   .background {
     min-width: 100%;
-    min-height: v-bind('minHeight');
-    position: relative;
+    min-height: v-bind('cssHeightDebounced');
+    position: v-bind('innerPosition');
   }
 }
 </style>

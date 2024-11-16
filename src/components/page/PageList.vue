@@ -3,6 +3,7 @@ import { defineComponent, h, nextTick, onMounted, ref, watch } from 'vue'
 import { useWindowSize, useWindowScroll } from '@vueuse/core'
 import { throttle } from 'radash'
 import { animate, easeInOut } from 'popmotion'
+import { createTimeout } from '@rewl/kit'
 import PageNavigator, { type PageNavigatorItem } from './PageNavigator.vue'
 
 const { height } = useWindowSize()
@@ -11,9 +12,11 @@ const { y } = useWindowScroll()
 const props = withDefaults(defineProps<{
   snapScroll?: boolean
   snapDelay?: number
+  snapDuration?: number
 }>(), {
   snapScroll: false,
   snapDelay: 1000,
+  snapDuration: 1000,
 })
 
 const slots = defineSlots<{
@@ -57,20 +60,13 @@ onMounted(() => {
   }, { immediate: true })
 })
 
-let snapScrollTimeout: ReturnType<typeof setTimeout> | undefined
+let snapScrollTimeout: ReturnType<typeof createTimeout> | undefined
 let scrollAnimation: ReturnType<typeof animate> | undefined
 let autoScrollTo: number | undefined
 
-const cancelSnapScroll = () => {
-  if (snapScrollTimeout) {
-    clearTimeout(snapScrollTimeout)
-    snapScrollTimeout = undefined
-  }
-}
-
 type ScrollAlign = 'top' | 'bottom'
 
-const updateNavigatorStatus = (windowHeight: number, nextY: number) => {
+const updateNavigatorStatus = async (windowHeight: number, nextY: number) => {
   let mostDisplayed = 0
   let mostIndex = 0
   let insidePage = false
@@ -123,41 +119,43 @@ const updateNavigatorStatus = (windowHeight: number, nextY: number) => {
     navigatorStatus.value[i].progress = percent
   }
 
-  cancelSnapScroll()
+  if (insidePage || !props.snapScroll) {
+    return
+  }
+
+  snapScrollTimeout?.cancel()
 
   if (typeof autoScrollTo == 'undefined' || Math.abs(autoScrollTo - nextY) > 1) {
     scrollAnimation?.stop()
   }
 
-  if (insidePage || !props.snapScroll) {
-    return
-  }
-
-  snapScrollTimeout = setTimeout(() => {
+  snapScrollTimeout = createTimeout(() => {
     jumpTo(mostIndex, scrollAlign)
     snapScrollTimeout = undefined
   }, props.snapDelay)
+
+  snapScrollTimeout.run()
 }
 
 onMounted(() => {
-  watch([height, y], throttle({ interval: 100 }, ([wh, y]) => updateNavigatorStatus(wh, y)), { immediate: true })
+  watch([height, y], throttle({ interval: 50 }, ([wh, y]) => updateNavigatorStatus(wh, y)), { immediate: true })
 })
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
-  cancelSnapScroll()
+  snapScrollTimeout?.cancel()
   scrollAnimation?.stop()
 
   const page = pagesRef[index].value
-  const { top, bottom } = page!.getBoundingClientRect()
+  if (!page) return
+  const { top, bottom } = page.getBoundingClientRect()
 
   const delta = align == 'top' ? top : (bottom - height.value)
   let to = window.scrollY + delta
   const toMax = document.body.scrollHeight - height.value
-  if (to > toMax) {
-    to = toMax
-  }
+  if (to > toMax) to = toMax
+
   const from = window.scrollY
-  const duration = Math.max(Math.abs(from - to) / height.value * 500, 250)
+  const duration = Math.max((Math.abs(from - to) / height.value - 1) * props.snapDuration, props.snapDuration / 2)
 
   scrollAnimation = animate({
     from,
