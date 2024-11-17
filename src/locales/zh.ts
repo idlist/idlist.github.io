@@ -33,12 +33,12 @@ const zh: LocaleSchema = {
     },
     'skills': {
       'chinese': '中文',
-      'english': '英文',
-      'japanese': '日文',
+      'english': '英语',
+      'japanese': '日语',
     },
   },
   'footer': {
-    'eof': '这是最后一页……至少现在是的。',
+    'eof': '愿你我都能寻得那至理之梦。',
     'last-update': '最近更新：',
   },
 }

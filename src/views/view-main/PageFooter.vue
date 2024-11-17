@@ -35,11 +35,17 @@ const { t } = useI18n()
 
 .bottom-line {
   position: absolute;
-  bottom: 4rem;
+  bottom: 0rem;
+  left: 0rem;
+  right: 0rem;
 
   width: 100%;
+  height: 4rem;
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  background-color: hsla(0, 0%, 100%, 50%);
 
   .sign {
     display: grid;
@@ -50,11 +56,7 @@ const { t } = useI18n()
     column-gap: 1rem;
 
     color: #666;
-    background-color: hsla(0, 0%, 100%, 50%);
-
     font-size: 0.875rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
 
     @media (max-width: $screen-md) {
       grid-template-columns: auto;

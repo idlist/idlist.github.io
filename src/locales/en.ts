@@ -36,7 +36,7 @@ const en = {
     },
   },
   'footer': {
-    'eof': 'This is the end of the page ... for now.',
+    'eof': 'Wish you and me reach the dream of ideal.',
     'last-update': 'Last Update: ',
   },
 }

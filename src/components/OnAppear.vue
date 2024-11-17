@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue'
-import { throttle } from 'radash'
+import { debounce } from 'radash'
 import { useWindowScroll, useWindowSize } from '@vueuse/core'
 import { createDelay, createFrames } from '@rewl/kit'
 
@@ -69,7 +69,7 @@ onMounted(() => {
   } else {
     show = ref(false)
 
-    stopDetectAppearance = watch([wh, y], throttle({ interval: 100 }, ([wh, _]) => {
+    stopDetectAppearance = watch([wh, y], debounce({ delay: 100 }, ([wh, _]) => {
       if (!el.value) return
 
       const { top, bottom } = el.value.getBoundingClientRect()
@@ -106,13 +106,13 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div ref="el" class="transition-on-show opacity-0">
+  <div ref="el" class="on-appear opacity-0">
     <slot></slot>
   </div>
 </template>
 
 <style lang="scss">
-.transition-on-show {
+.on-appear {
   display: flex;
 }
 

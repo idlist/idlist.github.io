@@ -13,7 +13,7 @@ const { t } = useI18n()
 
 const show = ref(false)
 const showContent = (update: boolean) => {
-  if (update) show.value = update
+  if (update) show.value = true
 }
 </script>
 
@@ -86,7 +86,7 @@ const showContent = (update: boolean) => {
   .from-right {
     &-enter-from {
       opacity: 0;
-      transform: translateX(1rem);
+      transform: translateX(1rem) translateZ(0);
     }
 
     &-enter-active {
