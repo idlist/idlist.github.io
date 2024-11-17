@@ -19,7 +19,7 @@ const cssHeightDebounced = computed(() => `${heightDebounced.value}px`)
 
 watch(height, throttle({ interval: 100 }, (h) => {
   const percent = Math.abs(heightDebounced.value - h) / heightDebounced.value
-  if (percent > 0.2) heightDebounced.value = h
+  if (percent > 0.25) heightDebounced.value = h
 }))
 
 const outerPosition = computed(() => props.background ? 'inherit' : 'relative')

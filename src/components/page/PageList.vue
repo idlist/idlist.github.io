@@ -125,10 +125,6 @@ const updateNavigatorStatus = async (windowHeight: number, nextY: number) => {
 
   snapScrollTimeout?.cancel()
 
-  if (typeof autoScrollTo == 'undefined' || Math.abs(autoScrollTo - nextY) > 1) {
-    scrollAnimation?.stop()
-  }
-
   snapScrollTimeout = createTimeout(() => {
     jumpTo(mostIndex, scrollAlign)
     snapScrollTimeout = undefined
