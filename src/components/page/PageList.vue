@@ -62,11 +62,10 @@ onMounted(() => {
 
 let snapScrollTimeout: ReturnType<typeof createTimeout> | undefined
 let scrollAnimation: ReturnType<typeof animate> | undefined
-let autoScrollTo: number | undefined
 
 type ScrollAlign = 'top' | 'bottom'
 
-const updateNavigatorStatus = async (windowHeight: number, nextY: number) => {
+const updateNavigatorStatus = async (windowHeight: number) => {
   let mostDisplayed = 0
   let mostIndex = 0
   let insidePage = false
@@ -134,7 +133,7 @@ const updateNavigatorStatus = async (windowHeight: number, nextY: number) => {
 }
 
 onMounted(() => {
-  watch([height, y], throttle({ interval: 50 }, ([wh, y]) => updateNavigatorStatus(wh, y)), { immediate: true })
+  watch([height, y], throttle({ interval: 50 }, ([wh, y]) => updateNavigatorStatus(wh)), { immediate: true })
 })
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {
@@ -158,16 +157,10 @@ const jumpTo = (index: number, align: ScrollAlign = 'top') => {
     to,
     duration,
     ease: [easeInOut],
-    onUpdate: (value) => {
-      window.scrollTo({ top: value, behavior: 'instant' })
-      autoScrollTo = value
-    },
+    onUpdate: (value) => window.scrollTo({ top: value, behavior: 'instant' }),
     onComplete: () => scrollAnimation?.stop(),
     onStop: () => {
-      nextTick(() => {
-        scrollAnimation = undefined
-        autoScrollTo = undefined
-      })
+      nextTick(() => scrollAnimation = undefined)
     },
   })
 }

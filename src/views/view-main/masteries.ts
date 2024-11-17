@@ -177,15 +177,15 @@ const masteries: MasteryList[] = [
     color: 'var(--color-art)',
     skills: [
       {
+        icon: icon_AffinityDesigner,
+        name: 'Affinity Designer',
+        link: 'https://affinity.serif.com/en-us/designer/',
+      },
+      {
         icon: icon_Krita,
         name: 'Krita',
         link: 'https://krita.org/en/',
         fav: true,
-      },
-      {
-        icon: icon_AffinityDesigner,
-        name: 'Affinity Designer',
-        link: 'https://affinity.serif.com/en-us/designer/',
       },
     ],
   },

@@ -57,8 +57,7 @@ const showContent = (update: boolean) => {
   justify-content: center;
 
   .container {
-    padding: 2rem;
-    padding-left: 1rem;
+    padding: 2rem 1rem;
     max-width: 800px;
 
     display: grid;
