@@ -7,7 +7,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <FullPage>
+  <FullPage class="page-footer">
     <div class="centered">
       {{ t('footer.eof') }}
     </div>
@@ -23,43 +23,45 @@ const { t } = useI18n()
 <style lang="scss">
 @use '@/scss.scss' as *;
 
-.centered {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+.page-footer {
+  .centered {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.bottom-line {
-  position: absolute;
-  bottom: 0rem;
-  left: 0rem;
-  right: 0rem;
-
-  width: 100%;
-  height: 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background-color: hsla(0, 0%, 100%, 50%);
-
-  .sign {
-    display: grid;
-    grid-template-columns: auto auto;
+    display: flex;
     align-items: center;
-    justify-items: center;
-    row-gap: 0.25rem;
-    column-gap: 1rem;
+    justify-content: center;
+  }
 
-    color: #666;
-    font-size: 0.875rem;
+  .bottom-line {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
 
-    @media (max-width: $screen-md) {
-      grid-template-columns: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: hsla(0, 0%, 100%, 50%);
+    padding: 1rem;
+    border-radius: 0.5rem;
+
+    .sign {
+      display: grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      justify-items: center;
+      row-gap: 0.25rem;
+      column-gap: 1rem;
+
+      color: #666;
+      font-size: 0.875rem;
+
+      @media (max-width: $screen-md) {
+        grid-template-columns: auto;
+      }
     }
   }
 }

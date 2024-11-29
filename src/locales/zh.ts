@@ -38,7 +38,7 @@ const zh: LocaleSchema = {
     },
   },
   'footer': {
-    'eof': '愿你我都能寻得那至理之梦。',
+    'eof': '愿你我都能触及那至理之梦。',
     'last-update': '最近更新：',
   },
 }

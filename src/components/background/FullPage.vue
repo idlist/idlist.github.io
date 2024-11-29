@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch, type Component } from 'vue'
+import { computed, type Component } from 'vue'
 
 const props = withDefaults(defineProps<{
   background?: Component
@@ -16,12 +16,12 @@ const innerPosition = computed(() => props.background ? 'relative' : 'inherit')
 </script>
 
 <template>
-  <div class="full-page">
+  <div class="full-page" v-bind="background ? {} : $attrs">
     <component :is="background" v-if="background" class="background" v-bind="$attrs">
       <slot></slot>
     </component>
 
-    <slot v-else v-bind="$attrs"></slot>
+    <slot v-else></slot>
   </div>
 </template>
 

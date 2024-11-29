@@ -102,7 +102,7 @@ const updateNavigatorStatus = async (windowHeight: number) => {
       } else if (top < 0 && bottom <= windowHeight) {
         scrollAlign = 'bottom'
       } else {
-        scrollAlign = top > windowHeight - bottom ? 'top' : 'bottom'
+        scrollAlign = top < windowHeight - bottom ? 'top' : 'bottom'
       }
     }
 
