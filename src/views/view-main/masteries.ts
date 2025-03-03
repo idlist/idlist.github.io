@@ -7,6 +7,7 @@ import icon_Japanese from '@/assets/byme/japanese.svg'
 
 import icon_JavaScript from '@/assets/svgrepo/javascript.svg'
 import icon_TypeScript from '@/assets/svgrepo/typescript.svg'
+import icon_Python from '@/assets/svgrepo/python.svg'
 import icon_Dart from '@/assets/svgrepo/dart.svg'
 import icon_Rust from '@/assets/svgrepo/rust.svg'
 import icon_Cpp from '@/assets/svgrepo/cpp.svg'
@@ -77,6 +78,11 @@ const masteries: MasteryList[] = [
         name: 'TypeScript',
         link: 'https://www.typescriptlang.org/',
         star: true,
+      },
+      {
+        icon: icon_Python,
+        name: 'Python',
+        link: 'https://www.python.org/',
       },
       {
         icon: icon_Dart,

@@ -1,3 +1,3 @@
 // Auto-generated file, don't modify.
-export const LastUpdate = '2024 / 11 / 29'
-export const CopyrightYears = '2024'
+export const LastUpdate = '2025 / 3 / 3'
+export const CopyrightYears = '2024 - 2025'

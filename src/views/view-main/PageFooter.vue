@@ -45,7 +45,7 @@ const { t } = useI18n()
     align-items: center;
 
     background-color: hsla(0, 0%, 100%, 50%);
-    padding: 1rem;
+    padding: 0.5rem;
     border-radius: 0.5rem;
 
     .sign {
