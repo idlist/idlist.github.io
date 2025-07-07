@@ -21,10 +21,10 @@
 
 .fx-quick-hover {
   transition: all 0.25s ease;
+}
 
-  &:hover {
-    transition: all 0.25s ease;
-  }
+.fx-quick-hover:hover {
+  transition: all 0.25s ease;
 }
 
 .icon-md {

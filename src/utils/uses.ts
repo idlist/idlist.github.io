@@ -1,5 +1,5 @@
 import { useStorage } from '@vueuse/core'
-import type { SupportedLocale } from './main'
+import type { SupportedLocale } from '@/main'
 
 export const useLocaleStorage = () => {
   const browserLocale = navigator.language

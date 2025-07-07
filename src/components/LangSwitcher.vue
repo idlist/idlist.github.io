@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { SupportedLocale } from '@/main'
-import { useLocaleStorage } from '@/uses'
+import { useLocaleStorage } from '@/utils/uses'
 
 import Globe from '@/assets/svgrepo/globe.svg'
 import ArrowLeft from '@/assets/svgrepo/arrow_left.svg'

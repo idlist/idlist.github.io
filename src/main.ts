@@ -1,12 +1,12 @@
 import 'normalize.css'
 import './main.scss'
-import './utils.scss'
+import './utils/common.css'
 
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import App from './App.vue'
 import router from './router'
-import { useLocaleStorage } from './uses'
+import { useLocaleStorage } from './utils/uses'
 
 import en, { type LocaleSchema } from './locales/en'
 import zh from './locales/zh'

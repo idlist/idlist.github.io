@@ -132,15 +132,13 @@ const linksPublic: LinkInfo[] = [
 </template>
 
 <style lang="scss">
-@use '@/scss.scss' as *;
-
 .page-home {
   position: absolute;
   bottom: 2rem;
   left: 2rem;
   right: 2rem;
 
-  @media (max-width: $screen-md) {
+  @screen lt-md {
     bottom: 1rem;
     left: 1rem;
     right: 1rem;
@@ -152,7 +150,7 @@ const linksPublic: LinkInfo[] = [
     pointer-events: none;
     transform: translateX(-0.5rem);
 
-    @media (max-width: $screen-md) {
+    @screen lt-md {
       flex-direction: column;
       align-items: flex-start;
       transform: translateX(-0.5rem) translateY(0.5rem)
@@ -164,7 +162,7 @@ const linksPublic: LinkInfo[] = [
       transform: translateY(-1rem);
       opacity: 0;
 
-      @media (max-width: $screen-md) {
+      @screen lt-md {
         transform: translateX(1rem);
       }
     }
@@ -181,7 +179,7 @@ const linksPublic: LinkInfo[] = [
   .symbol-at {
     height: 1.5rem;
 
-    @media (max-width: $screen-md) {
+    @screen lt-md {
       transform: translateX(0.75rem);
     }
   }
@@ -190,7 +188,7 @@ const linksPublic: LinkInfo[] = [
     height: 8rem;
     transform: translateX(-0.25rem);
 
-    @media (max-width: $screen-md) {
+    @screen lt-md {
       transform: translateX(-0.5rem) translateY(-1rem);
     }
   }

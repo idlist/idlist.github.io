@@ -133,7 +133,7 @@ const updateNavigatorStatus = async (windowHeight: number) => {
 }
 
 onMounted(() => {
-  watch([height, y], throttle({ interval: 50 }, ([wh, y]) => updateNavigatorStatus(wh)), { immediate: true })
+  watch([height, y], throttle({ interval: 50 }, ([wh, _]) => updateNavigatorStatus(wh)), { immediate: true })
 })
 
 const jumpTo = (index: number, align: ScrollAlign = 'top') => {

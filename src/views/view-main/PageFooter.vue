@@ -21,8 +21,6 @@ const { t } = useI18n()
 </template>
 
 <style lang="scss">
-@use '@/scss.scss' as *;
-
 .page-footer {
   .centered {
     position: absolute;
@@ -59,7 +57,7 @@ const { t } = useI18n()
       color: #666;
       font-size: 0.875rem;
 
-      @media (max-width: $screen-md) {
+      @screen lt-md {
         grid-template-columns: auto;
       }
     }
